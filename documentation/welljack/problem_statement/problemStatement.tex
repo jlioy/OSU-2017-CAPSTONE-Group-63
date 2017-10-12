@@ -1,0 +1,153 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage[noadjust]{cite}
+\bibliographystyle{IEEEtran}
+\usepackage{geometry}
+\geometry{textheight=10in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		The Cleverly Named Team}
+\def \CapstoneTeamNumber{		63}
+\def \GroupMemberOne{			Jackson Wells}
+\def \GroupMemberTwo{			Corynna Park}
+\def \GroupMemberThree{			Joshua Lioy}
+\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
+\def \CapstoneSponsorCompany{	Oregon State University}
+\def \CapstoneSponsorPerson{		Victor Hsu}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		Problem Statement
+				%Requirements Document
+				%Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	%\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            %\CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+		This project involves the creation of a workflow that allows users at any experience level to process and print 3D multicolor models.
+		Our challenge is to make the task of monochromatic and multicolor 3D printing simple and manageable, by completing all the usual footwork of 3D printing behind the scenes for the user.
+
+		This challenge can be overcome by the creation of an application that can produce three-dimensional image files that include an objects color information, and send said files to a user designated 3D printer capable of multicolor printing.
+		This will take out the headache of manipulation of multiple three-dimensional file producing programs, while also effectively creating a one-stop-shop for multicolor 3D printing.
+ 		If time allows, an article will be written and submitted to an accredited journal for publication.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{Problem}
+Tactile learning is an effective tool for instructors help improve student understanding of concepts and ideas.
+Biochemistry courses involve countless unique structures all with unique functions so 3D printing allows teachers to take learning one step further.
+The Biochemistry department at Oregon State University recently purchased two 3D printers, the Zmorph 2.
+0S and the Rostock MAX delta, that are able to print models in larger numbers at a reasonable cost.
+While the current setup is adequate, the printers are unable to print models with multiple colors, creating objects that don’t convey the information that they need to.
+The department has now procured a multifilament printing interface, the Palette+ by Mosaic Manufacturing, which opens the door to multicolor 3D models.
+The Palette+ works with both printers and is able to produce prints of up to 4 colors natively, and prints of 8 colors are claimed to be possible [1].
+This device greatly expands the realm of potential models to be produced by the department but the technology is so new, the creation of 3D multicolor files is a tedious process.
+No clear pipeline for file creation currently exists and many of the software tools involved lack proper documentation or are extremely expensive.
+Multiple publications also exist on the topic of 3D printing but multicolor prints go unmentioned [2].
+The department is seeking a robust and streamlined workflow to use this technology to its full potential.
+While mostly for biochemical structure prints, the workflow should be able to handle any structure desired.
+ 
+\section{Solution}
+A python script will be created that can be run from the command-line or the desktop, to allow usage by users of all experience levels.
+The program will be able to take multiple file formats as input, and handle them accordingly.
+Biological structure files will be run through PyMol and Blender and then finally to the corresponding printer software or directly to the printer.
+Other file types will be handled differently as they may not require such programs as PyMol.
+The command-line version of the program will be operated via an initial command in shell, and interactive windows will pop up as the program runs.
+The GUI version will provide a window asking for input, and proceed as the command-line program does.
+A command-line help document will be included to aid in usage of the program, and the same help will be included in the GUI version.
+To verify ease of use, user studies can be conducted.
+Said studies would also aid in making a user-friendly interface/experience.
+The script will be developed on a public GitHub page, so anyone can make use of the program.
+Everything required for usage of the tool will be packaged in so users don’t have to install multiple programs, something often not possible on certain infrastructures.
+Usage of either program will produce high quality multicolor prints to be used in classroom settings or for novelty. 
+The program can be installed on Oregon State University’s Unix infrastructure for usage across the university, if not just smaller infrastructures like the CGRB’s, which likely have better access to 3D printers.
+A publication could be written to further the outreach of the program, and to improve the world of 3D printing.
+ 
+\section{Performance Metrics}
+At the completion of this project the program created will be able to be operated without confusion or informational aid.
+The program will be able to produce prints consisting of at least 4 fours colors, given any object.
+Colors on the object should not mix, and all lines should be well defined.
+Biological structure files (.pdb, .cif, etc.) can be taken as input, processed/colored, and printed on the supplied 3D printers.
+Non-biological files will be supported, including all the standard 3D object file types, to allow for printing of any model desired by the user.
+The program will be able to run on all operating systems without error.
+A journal article will be written detailing the process of the workflow and results from the program.
+The publication will be structured to function as a guide for others to make use of.
+A GitHub page will be available to the public to accompany the publication.
+STL files will be provided to the printers for printing.
+The program will be available for download as a single package, with a separate download for the command-line and GUI instances.
+The program will also be installed on on-campus infrastructures, specifically the CGRB’s and Oregon State’s ENGR network, to allow operation via SSH.
+Help statements/documents will be included in both instances of the program, including enough information to ensure proper usage.
+Either program should be simple enough for use by most users, delivering a product identical to the one displayed on screen. 
+
+\begin{thebibliography}{9}
+
+\bibitem{kavanagh} 
+	J. Kavanagh, 
+	{\em 8 Color Print}, 
+	Mosaic Manufacturing. 
+	Sep. 2017. 
+	[Online] https://mosaicmanufacturing.zendesk.com/hc/en-us/community/posts/115004688233-8-Color-Print
+
+\bibitem{scalfini} 
+	V. F. Scalfini, 
+	{\em Programmatic conversion of crystal structures into 3D printable files using Jmol}, 
+	Journal of Cheminformatics, 
+	volume 8, 
+	page 66, 
+	2016. 
+	[Online] https://doi.org/10.1186/s13321-016-0181-z
+
+\end{thebibliography}
+
+\end{document}
