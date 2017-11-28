@@ -1,0 +1,192 @@
+\documentclass[letterpaper, onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{			The Polycules}
+\def \CapstoneTeamNumber{		63}
+\def \GroupMemberOne{			Joshua Lioy}
+\def \GroupMemberTwo{			Corynna Park}
+\def \GroupMemberThree{			Jackson Wells}
+\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
+\def \CapstoneSponsorCompany{	Oregon State University College of Science Department of Biochemistry and Biophysics}
+\def \CapstoneSponsorPerson{	Dr. Victor Hsu}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%Problem Statement
+				%Requirements Document
+				Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                %\NameSigPair{\GroupMemberTwo}\par
+                %\NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        	This document reviews some of the technology that can be used to implement our solution for the 3d molecules project. In this portion of the technology review the various hardware devices that are being used will be covered including printer option, multifilament interface options, and computing platforms. 
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{3D Printers}
+\subsection{Overview}
+	\begin{singlespacing}
+	While there are multiple kinds of 3d printers available to consumers and enterprise customers the kind of 3d printer that is being used for this project is known as a fused deposition modeling (SFDM) printer. An FDM printer utilizes liquid plastic, in our case polylactide (PLA), to create 3d objects that are built up by printing in layers. Amongst FDM printers there are also varying implementations of the technology that all have their advantages depending on the application. We will be looking at three different printers and their basic functions to determine the best option. 
+	\end{singlespacing} 
+\subsection{Criteria}
+  \begin{singlespacing}
+  \begin{itemize}
+      \item The printer must be an FDM type printer.
+      \item The printer must support the use of PLA for printing objects.
+      \item The printer must support input of G-code from SD cards or direct input from the computer platform or over a network interface.
+    \end{itemize}
+  \end{singlespacing}
+\subsection{Potential Choices}
+\subsubsection{ZMorph}
+	\begin{singlespacing}
+	The ZMorph printer is one printer by our client for our project. This printer allows for a few key features; primarily the use of two separate filament feeds that extruded through a single nozzle. This allows us to take more than one color or material at a time and print more complex objects than with just a single filament feed. The other benefit of the ZMorph is that it allows for the use of differing print heads. These include the default head that extrudes plastics to create objects, laser engraving heads, CNC milling heads, and more.\cite{zmorphtools}
+    \end{singlespacing}
+\subsubsection{Deltaprintr}
+	\begin{singlespacing}
+	The Deltaprintr is another printer that we have access to through our client. The main distinction between this printer and something like the ZMorph is the way that the printer creates prints. In a more traditional printer like the ZMorph printing along the $X$ and $Z$ axes are handled by the motors attached to the nozzle while printing along the $Y$ axis is handled by moving the print bed. In the Deltaprintr printing along all three axes is handled by moving the nozzle, the printing platform does not move. In the case of the Deltaprintr, we would be able to print taller, more narrow objects.\cite{deltago}
+    \end{singlespacing}
+\subsubsection{Ultimaker 3}
+	\begin{singlespacing}
+	The Ultimaker 3 is a 3d printer that is a good example of a high-end consumer 3d printer that has support for a wide variety of materials as well as support for dual extrusion with the use of two separate printing nozzles. It also has support for higher resolution prints with an $XYZ$ accuracy of $12.5$, $12.5$, and $2.5$ microns respectively. In many ways it is an industry standard for SLA printers and allows for printing in a wide variety of applications.\cite{ultimaker3}
+    \end{singlespacing}
+\subsection{Discussion}
+	\begin{singlespacing}
+	When looking at the options presented above the immediate issue with the Deltaprintr is that it does not have the capacity to create wider prints like the ZMorph and Ultimaker 3 printers. In contrast both the ZMorph and Ultimaker 3 printers are able to print suitably tall and prints that allow us to create a wider variety of objects than than we would be able to with the Detaprintr. With regards to the Ultimaker 3, we do not currently have the printer and we would need to procure it to implement our design. Comparatively, we have access to both the ZMorph and the Deltaprintr through our client. 
+	\end{singlespacing}
+\subsection{Conclusion}
+	\begin{singlespacing}
+    	We have decided that we will be making use of the ZMorph printer as it provides us with the flexibility to print objects a suitable size for out application, and we currently have access to the ZMorph printer. The ZMorph printer also interfaces well with the software that we are planning to use. Due to these reasons we are selecting the ZMorph printer to be our primary 3d printer during the course of the project.
+    \end{singlespacing}
+
+\section{Multifilament Interfaces}
+\subsection{Overview}
+	\begin{singlespacing}
+	Currently there are a limited amount of options available when it comes to multifilament interfaces in 3d printing. The reason we need a multifilament interface is so we can print polychromatic objects. With the current printers that we have access to we can print at most in two colors and even then we are only able to print in a gradient. With a multifilament interface we will be able to print objects that have distinct differences in color throughout the object. This eliminates the need for coloring the objects by hand after printing and allows for a quicker turn-around time between the design of an polychromatic object and the printing of that polychromatic.
+    \end{singlespacing}
+\subsection{Criteria}
+	\begin{singlespacing}
+    	\begin{itemize}
+    	\item The multifilament interface needs to support PLA filament.
+        \item The multifilament interface needs to support at least four different filaments.
+        \item The multifilament interface needs to support SLA printers.
+        \item The multifilament interface needs to support G-code.
+    	\end{itemize}
+    \end{singlespacing}
+\subsection{Potential Choices}
+\subsubsection{Palette+}
+	\begin{singlespacing}
+    The Palette+ enables a single extruder SLA printer to print multifilament prints. It supports up to four filaments and allows not only for a mixing of colors but a mixing of materials as well. This enables the user to print an object in three colors and print out the supports with something like a water soluble filament. The Palette+ handles all of the necessary splicing of the various filaments and it creates a single filament that is sent to the printer. Palette+ also has support with multiple slicing programs. This allows us to tailor our workflow design to use the slicing software that we choose to use in our implementation of the polychromatic 3d printing.\cite{palette+}
+    \end{singlespacing}
+\subsubsection{RoVa4D Full Color Blender 3D Printer}
+	\begin{singlespacing}
+    The RoVa4D Full Color Blender 3D printer is an FDM printer that incorporates the feeding and blending of filaments right into the printer. This removes the need for and external box to handle the splicing of filaments to create polychromatic objects. It also allows for more direct control over the filaments during the printing process. The RoVa4D has support for up to seven different filaments and has the ability to mix the filaments to create new colors.\cite{rova4d}
+    \end{singlespacing}
+\subsubsection{Prusa i3 MK2 Multi Material Upgrade}
+	\begin{singlespacing}
+    The Prusa i3 MK2 is another FDM printer that has support for multi material/polychromatic printing. The solution that is implemented in the Prusa i3 MK2 consists of an kit that is attached to the printer and allows for polychromatic printing. The upgrade kit supports up to four filaments and uses a single extruder nozzle for all the filaments. \cite{prusai3}
+    \end{singlespacing}
+\subsection{Discussion}
+	\begin{singlespacing}
+	Both the Prusa i3 MK2 Multi Material upgrade and the Palette+ have support for up to four filaments and use one extruder nozzle for printing. They are also bolt-ons for existing printers. The main difference between the Palette+ and the Prusa i3 MK2 Multi Material upgrade is that the former is designed to work with a wide variety of printers while the latter only supports the Prusa i3 MK2. The RoVa4D has the advantage of being a self contained unit and is able to support more filaments at once. However it is a rather costly device relative to the other two options. The main issue with the Prusa i3 MK2 upgrade is that it requires the purchase of the printer for the kit to work.
+	\end{singlespacing}
+\subsection{Conclusion}
+	\begin{singlespacing}
+	Based on the discussion above we have decided that for our project we will be utilizing the Palette+ as our multifilament interface. The Palette+ will allow us to utilize our choice of the ZMorph printer and will allow us the flexibility to potentially extend our workflow to support other printers.
+	\end{singlespacing}
+
+\section{Computing Platforms}
+\subsection{Overview}
+	\begin{singlespace}
+	For our project it is important to choose a computing platform that supports our requirements and allows for future expandability. We are also looking for a platform that has support for the programs that we intend to utilize in our project. 
+	\end{singlespace}
+\subsection{Criteria}
+	\begin{singlespace}
+		\begin{itemize}
+		\item The computing platform needs to support a scripting language.
+        \item The computing platform needs to support the software used to interface with the chosen 3d printer.
+        \item The computing platform needs to support the software used to interface with the multifilament interface.
+        \item The computing platform needs to support a scripting language that will interface with our chosen programs.
+		\end{itemize}
+	\end{singlespace}
+\subsection{Potential Choices}
+\subsubsection{MacOS}
+	\begin{singlespace}
+	MacOS allows us to make use of the programs that we will need to slice 3d models and handle color data before printing. MacOS also allows for the use of scripting languages through the terminal which enables us to more directly interface the various programs that we will be utilizing.
+	\end{singlespace}
+\subsubsection{Windows}
+	\begin{singlespace}
+	Windows undoubtedly has the most extensive support for the slicing and modeling programs that we are intending to use. However, it does not allow for the flexibility that we need to control certain programs with a scripting language. 
+	\end{singlespace}
+\subsubsection{Linux}
+	\begin{singlespace}
+	The main benefit of using Linux is the ability to make use of scripting languages directly from the command line. The main drawback to using Linux for our project is the lack of support for the 3d software programs that we are looking to use in our project. 
+	\end{singlespace}
+\subsection{Discussion}
+	\begin{singlespace}
+    Based on the information laid out above, it is clear that MacOS provides us with a nice balance between supporting the slicing and modeling software that we intend to use and the ability to use a scripting language to interface the various programs. Both Windows and Linux have their advantages as described above but neither provide the distinct balance that we are looking for.
+	\end{singlespace}
+\subsection{Conclusion}
+	\begin{singlespace}
+	We will be initially implementing our project using MacOS. If time permits we may decide to provide support for the Windows platform. 
+	\end{singlespace}
+    
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
