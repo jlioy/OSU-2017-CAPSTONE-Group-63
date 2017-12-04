@@ -1,0 +1,264 @@
+\documentclass[letterpaper, onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{			The Polycules}
+\def \CapstoneTeamNumber{		63}
+\def \GroupMemberOne{			Joshua Lioy}
+\def \GroupMemberTwo{			Corynna Park}
+\def \GroupMemberThree{			Jackson Wells}
+\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
+\def \CapstoneSponsorCompany{	Oregon State University College of Science Department of Biochemistry and Biophysics}
+\def \CapstoneSponsorPerson{	Dr. Victor Hsu}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%Problem Statement
+				%Requirements Document
+				%Technology Review
+				%Design Document
+				Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        	This document covers the progress that was made on the Molecules in 3D project over the course of the 2017-2018 Fall term. The document will include sections for a recap of the purpose of the assignment, the progress made during each week of the term, and a retrospective of the term.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+
+\newpage
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\begin{singlespace}
+\section{Project Purpose and Goals}
+The overall goal of our project is to design a new workflow system for printing multicolored 3D representations of molecules, specifically biomolecules such as proteins and DNA structures. The existing workflow system for creating models of biomolecules in the OSU Department of Biochemistry and Biophysics consists of printing of a white object and painting it by hand. This is of course a slow and inefficient use time and teaching resources.\par 
+This problem will be addressed by implementing a 3D printing system that makes use of multiple colored filaments, in our case up to four different colors, that creates a multi-colored object. Our solution will need to make use of the Mosaic Manufacturing Palette+, open source or freely available software tools, and custom algorithms and or programs to create an appropriately tailored and streamlined workflow.\par
+At the end of the project we plan to have a workflow system that will allow a worker who has a basic knowledge of 3D printing to create a multi-colored object just as easily as a monochrome object.\par
+
+\section{Current Status of Project}
+At the end of the fall term we have completed the large majority of the required project documentation including the problem statement, the requirements document, the technology review, the design document, and this progress report. Each group member has also kept weekly blog updates during the past ten weeks with details about their accomplishments and contributions to the project throughout the term.\par
+
+\section{Problems that Have Impeded Progress}
+	\begin{enumerate}
+	\item\textbf{Palette+ Servicing:} At this point in time the major problem for our project is our lack of access to the Palette+. It is currently being serviced by the manufacturer and we are expecting to receive it before the start of the Winter term.
+    \item\textbf{Learning \LaTeX:} At the start of the term none of the group members were familiar with the use of \LaTeX. Throughout the course of the term the group members gained experience using \LaTeX and also encountered new problems. Many of these issues were solved by looking up documentation as well as collaborating to find a solution to a specific problem. 
+	\end{enumerate}
+    
+\section{Weekly Summary}
+
+	\subsection{Week 01}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item All group members chose and submitted their preferences for the CAPSTONE project. 
+        	\end{itemize}
+        \subsubsection{Problems}
+       	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 02}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group was given our group and project assignments. The initial contact was made between group members and contact information was exchanged.
+            \item October 5th, We had our first meeting with Dr. Hsu and we covered the basic guidelines of the project.
+            \item A weekly meeting time was established with the TA.
+        	\end{itemize}
+        \subsubsection{Problems}
+        \begin{itemize}
+        	\item The fire alarm went off preceding our group's meeting with the client.
+        	\item The TA's possible meeting times don't align with the group's possible meeting times.
+        \end{itemize}
+        \subsubsection{Solutions}
+        \begin{itemize}
+        	\item Client meeting resumed after the fire drill, with minor delay.
+            \item TA accessed each group member's schedule to find a good time to meet for all of us.
+        \end{itemize}
+        
+     \subsection{Week 03}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group worked on and submitted the rough draft of the problem statement.
+             \item The group had our initial meeting with our TA Daniel, October 10th.
+            \item The group had our second meeting with Dr. Hsu and took a tour of and given access to the laboratory in ALS on October 12th. During this meeting, the client also gave an overview of the current workflow they had for 3D printing and showed us some examples of 3D prints.
+            \item The group obtained the GitHub usernames of the instructors and the TA and finished setting up the project repository.
+            \item Invitations to the group repository were sent to the instructors and the TA.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 04}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group met to finalize the problem statement and submitted the final draft.
+            \item The problem statement was submitted to the client for approval. The client responded with a few suggestions, which were followed. The document was resubmitted to the client and approval was given.
+            \item The group met with the TA for our weekly meeting on October 17th. During this meeting, ways for multiple collaboration on latex files were discussed. The TA also suggested that the group begin establishing user requirements/stories.
+            \item The group started running off test prints on the ZMorph printer.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 05}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group worked on and submitted the rough draft of the requirements document.
+            \item The group met with the TA for our weekly meeting on October 24th. During this meeting, we discussed the purpose and expectations of the project requirements document. 
+            \item The group met to work on the requirements document on October 26th. A meeting time was established for the following week with the client.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 06}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+            \item The group assembled for a meeting with the client on October 31st. The client failed to show up, which turned our meeting into a discussion pertaining to the structuring of the requirements document final draft. 
+        	\item The group worked on and submitted the final draft of the requirements document.
+            \item The group submitted their document for client approval. The client responded with corrections. Once the corrections were made, the document was resubmitted and client approval was given. 
+            \item The group met with the TA for our weekly meeting on October 31st.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item The client failed to attend a scheduled meeting. 
+        	\end{itemize}
+        \subsubsection{Solutions}
+        	\begin{itemize}
+        	\item Email contact was made with the client concerning their absence.
+        	\end{itemize}
+        
+    \subsection{Week 07}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group got the computer login set up in the laboratory.
+            \item The group met in the laboratory to go over some of the components for the technology review.
+            \item The group met with the TA for our weekly meeting on November 7th. During this meeting, we discussed ways of dividing up the technology review in terms of software and hardware, in relation to the relatively small scope of the assigned project.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item Some components selected for review in the technology review lack depth or possible choices in regards to the project. 
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 08}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group worked on and turned in the rough drafts of their individual technology reviews.
+            \item In class, peer reviews of the individual technology review drafts were completed.
+            \item The group met with the TA for our weekly meeting on November 14th. During this meeting, details of the technology review were discussed and a question was asked involving the license of a particular software tool.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item A software tool to be utilized in the project requires a license for usage.
+        	\end{itemize}
+        \subsubsection{Solutions}
+        	\begin{itemize}
+        	\item The software tool's license is freely available to students and faculty of accredited universities.
+        	\end{itemize}
+        
+    \subsection{Week 09}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+        	\item The group worked on turned in the final draft of their individual technology reviews.
+            \item There was no meeting with the TA this week due to the Thanksgiving holiday.
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+        
+    \subsection{Week 10}
+    	\subsubsection{Activities}
+        	\begin{itemize}
+            \item The group met briefly in the lab to discuss the design document on November 28th.
+        	\item The group worked on and turned in the final draft of the design document.
+            \item The group met with the TA for our weekly meeting on November 28th. During this meeting, the different requirements between the requirements document and design document were discussed. 
+        	\end{itemize}
+        \subsubsection{Problems}
+        	\begin{itemize}
+        	\item There were no problems of note for this week.
+        	\end{itemize}
+        %\subsubsection{Solutions}
+    
+\section{Retrospective}
+    \begin{tabular}{|p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth}|}
+    \hline
+    \centering Positives & \centering Deltas & \centering Actions \tabularnewline
+    \hline
+    The group completed and submitted all assignments on time. & 
+    Instructor feedback on documents would be beneficial. & 
+    Complete drafts of documents before the due date, so that instructor feedback can be requested. 
+    \tabularnewline
+     \hline
+    The group was able to work independently and produce satisfactory work without asking much from the client. & 
+    Next term, when we are more in the development phase, to ensure the project is on track, more client meetings should be held. & 
+    Schedule regular meetings with the client, at least once every other week.
+    \tabularnewline
+    \hline
+    \end{tabular}
+\end{singlespace}
+
+\newpage
+%\bibliographystyle{IEEEtran}
+%\bibliography{references}
+
+\end{document}
