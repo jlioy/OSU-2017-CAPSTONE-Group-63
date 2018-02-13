@@ -5,34 +5,26 @@ import subprocess
 
 inputFile = ""
 
-def sendDirect(inputFile):
-	#sends output to printer via direct USB connection
-	#check if printing
-	return
-
-def sendNetwork(inputFile):
-	#sends output to printer via LAN connection
-	#check if printing
-	#add to queue
-	return
-
-def isPrinting():
-	#check if printer is currently in use
-	return
-
 
 def checkSlice(inputFile):
+	#need names of output files
 	#verifies the output file is readable/writable
 	return
 
-def launchSlice(inputFile):
+def launchSlice(inputString):
+	cmd = r'F:\Documents\School\CS\CS46X\UltimakerCura3.1\Cura.exe %s' % inputString
+	subprocess.call(cmd)
 	return
 
 def checkConversion(inputFile):
+	#need names of output files
 	#verifies the output file is readable/writable
 	return
 
 def launchConversion(inputFile):
+	print("Please create multiple .stl files using your input file\n")
+	cmd = r'F:\Documents\School\CS\CS46X\Chimera1.12\bin\chimera.exe %s' % inputFile
+	subprocess.call(cmd)
 	return
 
 def validSTL(inputFile):
@@ -89,7 +81,7 @@ def usage():
 
 def main():
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hi:vnd", ["help", "input=","network","direct"])
+		opts, args = getopt.getopt(sys.argv[1:], "hi:v", ["help", "input="])
 	except getopt.GetoptError as err:
 		print (err)
 		usage()
@@ -107,12 +99,6 @@ def main():
 		elif o in ("-i", "--input"):
 			inputFile = a
 			fileInput = True
-		elif o in ("-d", "--direct"):
-			if(network == False):
-				direct  = True
-		elif o in ("-n", "--network"):
-			if(direct == False):
-				network = True
 		else:
 			assert False, "unhandled option"
 	if not fileInput:
@@ -127,34 +113,24 @@ def main():
 	if(fileType == 1):
 		#STL file input
 		#ignore files of this type??
+		launchSlice(inputFile)
 		sys.exit(0)
 	elif(fileType > 1 and fileType < 4):
 		#PDB or CIF file input
 		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
                         print ("Launching Chimera\n")
-		print("Please create multiple .stl files using your input file\n")
-		cmd = r'F:\Documents\School\CS\CS46X\Chimera1.12\bin\chimera.exe %s' % inputFile
-		subprocess.call(cmd)
-		#os.system(cmd)
+		launchConversion(inputFile)
 		#launch slicing software CURA
 		if(verbose):
                         print ("Launching CURA\n")
-		cmd = r'F:\Documents\School\CS\CS46X\UltimakerCura3.1\Cura.exe O.stl H.stl'
-		subprocess.call(cmd)
-		if(direct):
-			sendDirect(inputFile)
-		elif(network):
-			sendNetwork(inputFile)
+		launchSlice("O.stl H.stl")
 	elif(fileType > 3 and fileType < 6):
 		#3MF or WRL file input
 		#launch slicing software CURA
 		if(verbose):
                         print ("Launching CURA\n")
-		if(direct):
-			sendDirect(inputFile)
-		elif(network):
-			sendNetwork(inputFile)
+		launchSlice(inputFile)
 	else:
 		sys.exit(0);
 
