@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import getopt, sys
+import os
+import subprocess
 
 inputFile = ""
 
@@ -76,20 +78,20 @@ def fileValidate(inputFile):
 	elif(ext == "stl" or ext == "STL"):
 		tempType = validSTL(inputFile)
 	else:
-		print "Input file is of invalid type!\n"
+		print ("Input file is of invalid type!\n")
 		sys.exit(1)
 	return tempType
 
 
 def usage():
-	print "\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-d\tfor direct file transfer to printer\n\t-n\tfor network file transfer to printer\n\n"
+	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-d\tfor direct file transfer to printer\n\t-n\tfor network file transfer to printer\n\n")
 
 
 def main():
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], "hi:vnd", ["help", "input=","network","direct"])
 	except getopt.GetoptError as err:
-		print str(err)
+		print (err)
 		usage()
 		sys.exit(2)
 	verbose = False
@@ -97,7 +99,7 @@ def main():
 	direct = False
 	fileInput = False
 	for o, a in opts:
-	        if o == "-v":
+		if o == "-v":
 			verbose = True
 		elif o in ("-h", "--help"):
 			usage()
@@ -114,26 +116,32 @@ def main():
 		else:
 			assert False, "unhandled option"
 	if not fileInput:
-		print "\nNo input file specified!\nUse -h to display usage statement\n"
-                sys.exit(2)
+		print ("\nNo input file specified!\nUse -h to display usage statement\n")
+		sys.exit(2)
 	else:
 		if(verbose):
-	                print "Validating input file\n"
+	                print ("Validating input file\n")
 		fileType = fileValidate(inputFile)
 	if(verbose):
-                print "File valid!\n"
+                print ("File valid!\n")
 	if(fileType == 1):
 		#STL file input
 		#ignore files of this type??
 		sys.exit(0)
 	elif(fileType > 1 and fileType < 4):
 		#PDB or CIF file input
-		#launch PyMol to convert & color file
+		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
-                        print "Launching PyMol\n"
+                        print ("Launching Chimera\n")
+		print("Please create multiple .stl files using your input file\n")
+		cmd = r'F:\Documents\School\CS\CS46X\Chimera1.12\bin\chimera.exe %s' % inputFile
+		subprocess.call(cmd)
+		#os.system(cmd)
 		#launch slicing software CURA
 		if(verbose):
-                        print "Launching CURA\n"
+                        print ("Launching CURA\n")
+		cmd = r'F:\Documents\School\CS\CS46X\UltimakerCura3.1\Cura.exe O.stl H.stl'
+		subprocess.call(cmd)
 		if(direct):
 			sendDirect(inputFile)
 		elif(network):
@@ -142,7 +150,7 @@ def main():
 		#3MF or WRL file input
 		#launch slicing software CURA
 		if(verbose):
-                        print "Launching CURA\n"
+                        print ("Launching CURA\n")
 		if(direct):
 			sendDirect(inputFile)
 		elif(network):
