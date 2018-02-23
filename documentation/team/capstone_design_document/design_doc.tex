@@ -200,42 +200,23 @@ Finally, when considering the impact of the computing platform on or design deci
         Preceding the action of files being sent to their corresponding software tools, supplied files will be validated.
         Validation entails verification that the file's contents correspond to the its extension and are not malicious in nature.
         
-        \subsubsection{Hardware Communication}
-        This project involves multiple pieces of technology that must work together to produce three dimensional objects. 
-        One of the most important hardware conversations that must take place is communication between the workflow and the 3D printer, which involves the transmission of the processed structure file.
-        The execution of this communication between devices can be completed in three ways, which are listed in the printer's user manual. \cite{printer}\par
-        
-        In our project we plan to utilize two communication methods made available for use by the printer's manufacturer, Local Area Network (LAN) and direct USB connection. 
-        Both connections types will be used interchangeably by the workflow, selection depending upon the size of the file supplied by the user.
-		The decision to use both methods of communication increases the versatility of the workflow, allowing for remote printing capabilities when the file is of appropriate size. \cite{network}
-        Using both methods also supplies the workflow with an alternative for communication; if one method is unable to communicate with the printer, the other is utilized.
-        LAN communication between the printer and computer will require both devices to be connected to the same network.
-        Our group will be able to make use of OSU's LAN, as it is publicly available to students and faculty.
-        The computer involved in the workflow is already connected to the LAN, but the printer's connection still needs to be set up.
-        LAN communication will require the development of a queuing system in the workflow, to manage cases where the printer receives another file for printing before the currently printing object is complete.
-        The queuing system will not have a maximum size, progressively printing objects in the order that they arrived in the queue.
-        Files supplied to the workflow will be validated preceding their placement into the printing queue, so users don't have to wait for their job to reach the top of the queue before discovering the file is invalid. 
-        When a structure file exceeds 500MB after processing, the USB connection method will be utilized.
-        This is done so that users aren't held up by latencies in network interactions which, when left unattended, can eventually cause whole network slow downs.
-        USB communication is executed using a A to B USB cable, which are very common and readily available.
-        
         \subsubsection{Conversion Software}
         Biological structure files supplied to the workflow must be converted preceding the usage of slicing software, due to incompatible file types.
         PDB and CIF file types are most commonly used to store biological structure data, but our selected slicing software (and most others) cannot take these as input.
         Because of this, the workflow must include a conversion feature, which will be handled by an exterior software tool.
-        The Python Molecular Viewer (PVM or PyMol) was written using Python, and makes use of many well-known Python packages. \cite{pymol}
-        PyMol is an open-source piece of software that is publicly available to students and faculty associated with accredited universities, after the obtainment of a usage license.
-        The fact that PyMol is Python based makes it an excellent choice for the project's workflow, as it will integrate seamlessly into the existing Python code.\par
+        UCSF's Chimera was written using Python, and makes use of many well-known Python packages.
+        Chimera is an open-source piece of software that is publicly available to students and faculty associated with accredited universities, after the obtainment of a usage license.
+        The fact that Chimera is Python based makes it an excellent choice for the project's workflow, as it will integrate seamlessly into the existing Python code.\par
         
-        When biological structure files are received they will be validated and sent to PyMol, which will open a GUI for visualization of the structure.
-        PyMol is a powerful tool, capable of many functions outside of file conversion.
-        These functions will be available to the user as they interact with PyMol, allowing advanced users to fiddle with settings to process their structure files.
-        During the execution of PyMol, the user has the option to color their supplied structure, according to molecule type or other structural features.
+        When biological structure files are received they will be validated and sent to Chimera, which will open a GUI for visualization of the structure.
+        Chimera is a powerful tool, capable of many functions outside of file conversion.
+        These functions will be available to the user as they interact with Chimera, allowing advanced users to fiddle with settings to process their structure files.
+        During the execution of Chimera, the user has the option to color their supplied structure, according to molecule type or other structural features.
         This is where the workflow transitions from producing monochromatic prints to producing polychromatic prints.
         Coloring of non-biological structures will take place further on in the workflow. 
-        Once the user is finished interfacing with PyMol's GUI, the biological structure output will be written to the current working directory. 
-        PyMol is currently able to output structure files in VRML2 format (.wrl).\cite{pymolFormats}
-        Our workflow aims to utilize the 3MF file type, which is not a possible output from PyMol, but many existing libraries can be used to produce this file type from PyMol's output.
+        Once the user is finished interfacing with Chimera's GUI, the biological structure output will be written to the current working directory. 
+        Chimera is currently able to output structure files in VRML2 (.wrl) and .STL formats.
+        Our workflow aims to utilize the 3MF file type, which is not a possible output from Chimera, but many existing libraries can be used to produce this file type from Chimera's output.
         
 	\subsection{System Operation}
 		\begin{enumerate}
@@ -245,14 +226,13 @@ Finally, when considering the impact of the computing platform on or design deci
             \item Workflow validates input file.
             \item (If file is biological) Conversion software is launched by the workflow, user interfaces as needed. Output is stored in the working directory.
             \item Slicing software is launched by the workflow, using either the output from conversion software or the non-biological input file. Output is written to the working directory.
-            \item Workflow sends slicing software output to the 3D printing software.
-            \item 3D printer receives printing information, and begins printing.
+            \item Workflow sends previous output to printing software for final file adjustments. Output is written to the supplied SD card.
+            \item SD card is removed from the computer and moved to the 3D printer, where the print is initialized. 
 		\end{enumerate}
         
 \section{Conclusion}
 At the completion of this project, we will have produced a robust workflow capable of printing polychromatic three dimensional objects from biological structure data and non-biological structure data.
 Individuals associated with the DBB will be able to supply files they desire to have printed, process them, and then watch the objects print inside the 3D printer. 
-Instances of the workflow will be able to be run outside of OSU's LAN, so users don't necessarily have to be on campus to print an object.
 We hope that the workflow we produce will be preferentially utilized to produce objects that improve student comprehension of concepts presented by instructors in the DBB.
 \end{singlespace}
 
