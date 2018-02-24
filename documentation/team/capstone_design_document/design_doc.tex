@@ -79,7 +79,8 @@
 Date       & Description                                   & Revision & Editor                                   &  \\
 11/28/2017 & Created the document and added formatting     & 0        & Joshua Lioy                              &  \\
 11/30/2017 & Added to the Introduction and Design Overview & 1        & Joshua Lioy, Corynna Park, Jackson Wells &  \\
-12/1/2017  & Completed first draft and submitted           & 2        & Joshua Lioy, Corynna Park, Jackson Wells & 
+12/1/2017  & Completed first draft and submitted           & 2        & Joshua Lioy, Corynna Park, Jackson Wells &  \\
+2/23/2018  & Edited Section 3.1.5 3D Object File Type to reflect changes to the workflow  & 3 	& Corynna Park
 \end{tabular}%
 }
 \end{table}
@@ -150,19 +151,19 @@ Finally, when considering the impact of the computing platform on or design deci
     This file is then passed through slicing software to be translated into instructions on how to produce a 3D object that the 3D printer can understand. 
 	Depending on the file type, this information is saved as either plain text or binary data and represents physical details about an object such as is shape, coloring, texture, shadings, etc. \cite{all3dpweb}
 	There are many different file types exported by CAD (Computer-Aided Drawing) software to be used in 3D printing, and these types vary in the amount of information they store. \par
-	The file type that will be used for the Molecules in 3D project is 3MF, or the 3D Manufacturing Format.
+	The file types that will be used for the Molecules in 3D project include CIF and PDB, which are biological type files, STL, and 3MF.
+        CIF and PDB are file types capable of storing information regarding biological structures, for instance, a water molecule. 
+        Since these type files are not compatible with Cura, a third-party application will have to be used to convert CIF and PDB to a file type usable by the slicing software.
+        STL is the industry standard and most widely-used file type when it comes to 3D printing.
+        The STL format is one of the simplest 3D file formats available; they are only able contain information about an object's geometry, ignoring other physical attributes, including color.\cite{3dbeginweb}
+	While STL files are unable to store multicolor data, multiple STL files can be individually colored, each with a single color, and then merged, creating a single, multicolored object.\par
 	3MF is a new 3D printing format that is XML-based (Extensible Markup Language), human-readable, and allows design applications to export complete information on an object to a wide variety of applications, platforms, services, and printers. \cite{3mfweb}
 	While this file type may be considered more complex than other file types because of the significant amount of data that it can store, data is given through clear and concise specifications which makes the information easy to comprehend.
 	3MF files are able to fully describe a model, including object geometry, appearance, and more, while narrowing the scope of the data to avoid adding unnecessary detail that may make the file more difficult to process. 
 	Since 3MF is a newer file format type, not every software supports it as of yet.
-	However, there is an open source library as well as several Microsoft implemented Windows 10 APIs which allow 3MF files to be read, written, and validated. 
-	During its development, a main objective was interoperability, or the ability of computer systems or software to exchange and make use of information between each other. 
-    This concern arose because some file types are only able to be used by certain software, restricting their usability across platforms.  
-	As a result, 3MF was developed as a neutral format type, meaning that files of this type are able to be understood by any software that supports them. \cite{3mfweb} \par
-    For this project, the file type used must be able to represent multiple colors as well as depict the appearance and geometry of an object.
-    Because of the interoperability, multicolor capability, and depth of information that it can store, the 3MF file type was determined to be the best fit for this project. 
-    Another factor is that 3MF is supported by Ultimaker Cura, which is the slicing software that will be used throughout this project and is further discussed in the next section.
-    It is important to note that since it is a relatively new file type, there may be a limited amounts of resources when it comes to documentation and trouble-shooting. 
+	However, there is an open source library as well as several Microsoft implemented Windows 10 APIs which allow 3MF files to be read, written, and validated. \par
+    STL and 3MF are both supported by Ultimaker's Cura, which is the slicing software that will be used throughout this project and is further discussed in the next section.
+    
         \subsubsection{3D Slicing Software}
 	In order for the 3D printer to understand and print an object, the file containing the data about the object must be translated.
 	This translation is done through slicing software.
