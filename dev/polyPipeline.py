@@ -12,7 +12,7 @@ def checkSlice(inputFile):
 	return
 
 def launchSlice(inputString):
-	cmd = r'F:\Documents\School\CS\CS46X\UltimakerCura3.1\Cura.exe %s' % inputString
+	cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\UltimakerCura3.0\Cura.exe %s' % inputString
 	subprocess.call(cmd)
 	return
 
@@ -23,10 +23,16 @@ def checkConversion(inputFile):
 
 def launchConversion(inputFile):
 	print("Please create multiple .stl files using your input file\n")
-	cmd = r'F:\Documents\School\CS\CS46X\Chimera1.12\bin\chimera.exe %s' % inputFile
+	#cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\Chimera1.12\bin\chimera.exe %s' % inputFile
+	cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\Chimera1.12\bin\chimera.exe'
 	subprocess.call(cmd)
 	return
 
+def launchPrint(inputFile):
+	cmd = r'C:\Program Files\Chroma\Chroma.exe'
+	subprocess.call(cmd)
+	return
+	
 def validSTL(inputFile):
 	#exit(1) if file is invalid
 	return 1 #file type
@@ -120,17 +126,23 @@ def main():
 		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
                         print ("Launching Chimera\n")
-		launchConversion(inputFile)
+		#launchConversion(inputFile)
 		#launch slicing software CURA
 		if(verbose):
                         print ("Launching CURA\n")
-		launchSlice("O.stl H.stl")
+		#launchSlice("O.stl H.stl")
+		if(verbose):
+						print ("Launching Chroma\n")
+		launchPrint("water.gcode")
 	elif(fileType > 3 and fileType < 6):
 		#3MF or WRL file input
 		#launch slicing software CURA
 		if(verbose):
                         print ("Launching CURA\n")
 		launchSlice(inputFile)
+		if(verbose):
+						print ("Launching Chroma\n")
+		launchPrint("water.gcode")
 	else:
 		sys.exit(0);
 
