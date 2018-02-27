@@ -126,11 +126,11 @@ def main():
 		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
                         print ("Launching Chimera\n")
-		#launchConversion(inputFile)
+		launchConversion(inputFile)
 		#launch slicing software CURA
 		if(verbose):
                         print ("Launching CURA\n")
-		#launchSlice("O.stl H.stl")
+		launchSlice("O.stl H.stl")
 		if(verbose):
 						print ("Launching Chroma\n")
 		launchPrint("water.gcode")
