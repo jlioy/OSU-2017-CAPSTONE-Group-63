@@ -99,10 +99,7 @@ Beyond the specific application of the workflow to the Department of Biochemistr
   	\item Slicing Software: A program that takes a 3D object file and translates it into individual layers that can be interpreted by a 3D printer.
     \item G-code: A numerical control programming language that is used in computer-aided manufacturing and 3D printing.
     \item STL: Short for Stereo-Lithography, STL is a file format that is widely used in 3D printing to convert object data into G-code.
-    \item PDB: program database file, contains the same information that a CIF file would but in a different format.
-    \item CIF: Crystallographic information file, containing data pertaining to cystallized biological structures. 
-    \item WRL: Commonly known as VRML, this file format is for representing 3D vector graphics.
-    \item OBJ: Similar to WRL files, another variation of 3D model representation.
+    \item PDB: Stands for protein databank, representing a chemical file format and the standard for files which store atomic coordinates.
   \end{itemize}
 
 \subsection{Overview} %Corynna
@@ -196,13 +193,13 @@ Each product requirement will be uniquely identifiable and able to be evaluated 
     The system shall recognize acceptable files types and check them for validity, preceding execution of the main process.
     Invalid file input will result in error messages displayed to the user.
     These errors include: "Invalid File Type," "Invalid File Format," and "File Does Not Exist."
-    When biological files are supplied, they will be converted to STL format using PyMol or Chimera, and then modeled in Blender or other apropriate program(s). 
-    Other file types, or those made from non-biological objects, will be sent straight to Blender as they do not require conversion.
+    When biological files are supplied, they will be converted to STL format using Chimera, and then modeled in Cura. 
+    Other file types, or those made from non-biological objects, will be sent straight to Cura as they do not require conversion.
     The system's final output will be sent to a user-designated SD card to interface with the 3D printer and allow printing.
     
     \subsection{Performance Requirements}
-    Biological structure files (.pdb, .cif) can be taken as input, processed/colored, and printed on the supplied 3D printers.
-	Non-biological files will be supported (.stl,.3mf), to allow for printing of any model desired by the user.
+    Biological structure files (.pdb) can be taken as input, processed/colored, and printed on the supplied 3D printers.
+	Non-biological files will be supported (.stl), to allow for printing of any model desired by the user.
     The product will be executed in single instances as limited by the printer's ability to produce objects one at a time.
     Files produced by the product will be small enough to fit onto a 4GB SD card, to avoid exceeding size limitations of user card size.
     95\% of executions of the program, using valid input files, will produce output files correctly formatted for use with the 3D printer.
@@ -216,7 +213,9 @@ Each product requirement will be uniquely identifiable and able to be evaluated 
     The software system is intended to be reliable to the point that it is able to continually take in the aforementioned file types, process them, and generate the desired polychromatic object data. 
     The software system is intended to be maintainable in that pieces of the software system comprised of open-source programs will be upgradeable by a user, if and when new versions of the open-source components are released. 
     Finally, with regards to the portability of the software system, it is intended that the workflow will be usable on both Microsoft Windows and MacOS. 
-    Any scripting required to interface various open-source components of the software system will be done in Python, which will allow for easy porting between operating systems. 
+    Any scripting required to interface various open-source components of the software system will be done in Python, which will allow for easy porting between operating systems.
+    \subsection{Object Requirements}
+    Upon completion of the project our workflow will be able to produce multicolored molecular objects. This is one of our primary goals as these molecular representations are designed to be used as teaching tools for biochemistry and biophysics students.
     
     \subsection{Stretch Goals}
     \begin{itemize}
