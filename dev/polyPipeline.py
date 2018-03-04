@@ -38,26 +38,9 @@ def validSTL(inputFile):
 	return 1 #file type
 
 
-def validCIF(inputFile):
-	#exit(1) if file is invalid
-        return 2
-
-
 def validPDB(inputFile):
 	#exit(1) if file is invalid
-        return 3
-
-
-def valid3MF(inputFile):
-	#check for color information
-	#exit(1) if file is invalid
-        return 4
-
-
-def validWRL(inputFile):
-	#check for color information
-	#exit(1) if file is invalid
-        return 5
+        return 2
 
 
 def fileValidate(inputFile):
@@ -65,14 +48,8 @@ def fileValidate(inputFile):
 	ext = inputFile[-4:]
 	if(ext[0] == "."):
 		ext = ext[-3:]
-	if(ext == "cif" or ext == "CIF"):
-		tempType = validCIF(inputFile)
-	elif(ext == "pdb" or ext == "PDB"):
+	if(ext == "pdb" or ext == "PDB"):
 		tempType = validPDB(inputFile)
-	elif(ext == "3mf" or ext == "3MF"):
-		tempType = valid3MF(inputFile)
-	elif(ext == "wrl" or ext == "WRL"):
-		tempType = validWRL(inputFile)
 	elif(ext == "stl" or ext == "STL"):
 		tempType = validSTL(inputFile)
 	else:
@@ -82,7 +59,7 @@ def fileValidate(inputFile):
 
 
 def usage():
-	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-d\tfor direct file transfer to printer\n\t-n\tfor network file transfer to printer\n\n")
+	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\n")
 
 
 def main():
@@ -118,11 +95,16 @@ def main():
                 print ("File valid!\n")
 	if(fileType == 1):
 		#STL file input
-		#ignore files of this type??
-		launchSlice(inputFile)
+		#launch slicing software CURA
+                if(verbose):
+                        print ("Launching CURA\n")
+                launchSlice(inputFile)
+                if(verbose):
+			print ("Launching Chroma\n")
+                launchPrint("water.gcode")
 		sys.exit(0)
-	elif(fileType > 1 and fileType < 4):
-		#PDB or CIF file input
+	elif(fileType == 2):
+		#PDB files 
 		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
                         print ("Launching Chimera\n")
@@ -132,17 +114,9 @@ def main():
                         print ("Launching CURA\n")
 		launchSlice("O.stl H.stl")
 		if(verbose):
-						print ("Launching Chroma\n")
+			print ("Launching Chroma\n")
 		launchPrint("water.gcode")
-	elif(fileType > 3 and fileType < 6):
-		#3MF or WRL file input
-		#launch slicing software CURA
-		if(verbose):
-                        print ("Launching CURA\n")
-		launchSlice(inputFile)
-		if(verbose):
-						print ("Launching Chroma\n")
-		launchPrint("water.gcode")
+		sys.exit(0)
 	else:
 		sys.exit(0);
 
