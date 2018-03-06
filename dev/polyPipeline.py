@@ -1,46 +1,41 @@
 #!/usr/bin/env python
+# coding=UTF-8
 import getopt, sys
 import os
 import subprocess
 
 inputFile = ""
-
-
-def checkSlice(inputFile):
-	#need names of output files
-	#verifies the output file is readable/writable
-	return
+chimDir = ""
+curaDir = ""
+chroDir = "" 
 
 def launchSlice(inputString):
-	cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\UltimakerCura3.0\Cura.exe %s' % inputString
+	cmd = '%s %s' % (curaDir,inputString)
 	subprocess.call(cmd)
-	return
-
-def checkConversion(inputFile):
-	#need names of output files
-	#verifies the output file is readable/writable
 	return
 
 def launchConversion(inputFile):
-	print("Please create multiple .stl files using your input file\n")
-	#cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\Chimera1.12\bin\chimera.exe %s' % inputFile
-	cmd = r'C:\Users\Jackson\Documents\school\CSBS\46X\Chimera1.12\bin\chimera.exe'
+	cmd = "%s %s" % (chimDir,inputFile)
 	subprocess.call(cmd)
 	return
 
-def launchPrint(inputFile):
-	cmd = r'C:\Program Files\Chroma\Chroma.exe'
-	subprocess.call(cmd)
+def launchPrint():
+	subprocess.call(chroDir)
 	return
 	
 def validSTL(inputFile):
-	#exit(1) if file is invalid
+#Invalid File Format"
+	if not os.path.isfile(inputFile):
+		print ("File Does Not Exist!\n")	
+		sys.exit(1)
 	return 1 #file type
 
 
 def validPDB(inputFile):
-	#exit(1) if file is invalid
-        return 2
+	if not os.path.isfile(inputFile):
+                print ("File Does Not Exist!\n")
+                sys.exit(1)
+	return 2
 
 
 def fileValidate(inputFile):
@@ -53,7 +48,7 @@ def fileValidate(inputFile):
 	elif(ext == "stl" or ext == "STL"):
 		tempType = validSTL(inputFile)
 	else:
-		print ("Input file is of invalid type!\n")
+		print ("Invalid File Type!\n")
 		sys.exit(1)
 	return tempType
 
@@ -62,7 +57,25 @@ def usage():
 	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\n")
 
 
+def readConfiguration():
+	global chimDir,chroDir,curaDir
+	f = open("paths.conf","r") 
+	for line in f:	
+		if "Chimera:" in line:	
+			chimDir = line.rstrip()
+			chimDir = chimDir[8:]
+		elif "Cura:" in line:
+			curaDir = line.rstrip()
+			curaDir = curaDir[5:]	
+		elif "Chroma:" in line:	
+			chroDir = line.rstrip()
+			chroDir = chroDir[7:]
+	f.close()
+	return
+
+
 def main():
+	readConfiguration()
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], "hi:v", ["help", "input="])
 	except getopt.GetoptError as err:
@@ -85,7 +98,7 @@ def main():
 		else:
 			assert False, "unhandled option"
 	if not fileInput:
-		print ("\nNo input file specified!\nUse -h to display usage statement\n")
+		print ("\nNo input file specified!\n\nUse -h to display usage statement\n")
 		sys.exit(2)
 	else:
 		if(verbose):
@@ -96,26 +109,30 @@ def main():
 	if(fileType == 1):
 		#STL file input
 		#launch slicing software CURA
-                if(verbose):
-                        print ("Launching CURA\n")
-                launchSlice(inputFile)
-                if(verbose):
+		if(verbose):
+			print ("Launching CURA\n")
+		launchSlice(inputFile)
+		if(verbose):
 			print ("Launching Chroma\n")
-                launchPrint("water.gcode")
+		launchPrint()
 		sys.exit(0)
+
 	elif(fileType == 2):
 		#PDB files 
 		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
-                        print ("Launching Chimera\n")
+			print ("Launching Chimera\n")
 		launchConversion(inputFile)
 		#launch slicing software CURA
 		if(verbose):
-                        print ("Launching CURA\n")
-		launchSlice("O.stl H.stl")
+				print ("Launching CURA\n")
+
+		launchSlice("")
+
 		if(verbose):
-			print ("Launching Chroma\n")
-		launchPrint("water.gcode")
+				print ("Launching Chroma\n")
+
+		launchPrint()
 		sys.exit(0)
 	else:
 		sys.exit(0);
