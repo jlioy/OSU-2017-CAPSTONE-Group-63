@@ -80,7 +80,8 @@ Date       & Description                                   & Revision & Editor  
 11/28/2017 & Created the document and added formatting     & 0        & Joshua Lioy                              &  \\
 11/30/2017 & Added to the Introduction and Design Overview & 1        & Joshua Lioy, Corynna Park, Jackson Wells &  \\
 12/1/2017  & Completed first draft and submitted           & 2        & Joshua Lioy, Corynna Park, Jackson Wells &  \\
-2/23/2018  & Edited Section 3.1.5 3D Object File Type to reflect changes to the workflow  & 3 	& Corynna Park
+2/23/2018  & Edited doc to reflect software changes to the workflow  & 3 	& Jackson Wells & \\
+2/27/2018  & Edited doc to reflect changes to the workflow regarding file type  & 3 	& Corynna Park
 \end{tabular}%
 }
 \end{table}
@@ -111,6 +112,8 @@ Date       & Description                                   & Revision & Editor  
 	\begin{itemize}
 		\item\textbf{Fused Deposition Modeling (FDM):} This is an additive manufacturing technology that is used for modeling and prototyping. This is done by taking a plastic or metal filament and creating a material by adding successive layers of material.\cite{fusedep}.
         \item\textbf{Additive Manufacturing (AM):} This is the process of make a physical object from a 3D digital model.\cite{additiveman}
+       \item STL: Short for Stereo-Lithography, STL is a file format that is widely used in 3D printing to convert object data into G-code.
+      \item PDB: Stands for Protein Databank, representing a chemical file format and the standard for files which store atomic coordinates.
 	\end{itemize}
 \section{Design Overview}
 	%\subsection{Description of the Problem}
@@ -151,18 +154,15 @@ Finally, when considering the impact of the computing platform on or design deci
     This file is then passed through slicing software to be translated into instructions on how to produce a 3D object that the 3D printer can understand. 
 	Depending on the file type, this information is saved as either plain text or binary data and represents physical details about an object such as is shape, coloring, texture, shadings, etc. \cite{all3dpweb}
 	There are many different file types exported by CAD (Computer-Aided Drawing) software to be used in 3D printing, and these types vary in the amount of information they store. \par
-	The file types that will be used for the Molecules in 3D project include CIF and PDB, which are biological type files, STL, and 3MF.
-        CIF and PDB are file types capable of storing information regarding biological structures, for instance, a water molecule. 
-        Since these type files are not compatible with Cura, a third-party application will have to be used to convert CIF and PDB to a file type usable by the slicing software.
+	The file types that will be used for the Molecules in 3D project are PDB, for the biological file type, and STL, for all other types.
+        PDB files are capable of storing information regarding biological structures, for instance, a water molecule.
+        The main data they store are the coordinate files for biological molecules.
+        From these coordinate files, information about each atom in a molecule and their location in 3D space is represented.\cite{pdbFile}
+        Since these type files are not compatible with Cura, we will be using Chimera to convert PDB files to to multiple STL files before passing it to Cura.
         STL is the industry standard and most widely-used file type when it comes to 3D printing.
         The STL format is one of the simplest 3D file formats available; it is only able contain information about an object's geometry, ignoring other physical attributes, including color.\cite{3dbeginweb}
 	While STL files are unable to store multicolor data, multiple STL files can be individually colored, each with a single color, and then merged, creating a single, multicolored object.\par
-	3MF is a new 3D printing format that is XML-based (Extensible Markup Language), human-readable, and allows design applications to export complete information on an object to a wide variety of applications, platforms, services, and printers. \cite{3mfweb}
-	While this file type may be considered more complex than other file types because of the significant amount of data that it can store, data is given through clear and concise specifications which makes the information easy to comprehend.
-	3MF files are able to fully describe a model, including object geometry, appearance, and more, while narrowing the scope of the data to avoid adding unnecessary detail that may make the file more difficult to process. 
-	Since 3MF is a newer file format type, not every software supports it as of yet.
-	However, there is an open source library as well as several Microsoft implemented Windows 10 APIs which allow 3MF files to be read, written, and validated. \par
-    STL and 3MF are both supported by Ultimaker's Cura, which is the slicing software that will be used throughout this project and is further discussed in the next section.
+    STL is supported by Ultimaker's Cura, which is the slicing software that will be used throughout this project and is further discussed in the next section.
     
         \subsubsection{3D Slicing Software}
 	In order for the 3D printer to understand and print an object, the file containing the data about the object must be translated.
@@ -173,10 +173,10 @@ Finally, when considering the impact of the computing platform on or design deci
 	For this project, the slicing software that will be utilized is Ultimaker’s Cura.
 	Cura is advertised as "the world's most advanced 3D printer software," suitable for both the novice and expert. 
 	Cura's special features, as listed on the Ultimaker website, include 200 customizable settings when optimizing 3D models, the ability to print multiple objects at once, each with their own settings, and downloadable plugins to "create seamless integration with leading design and engineering software." \cite{curaweb}
-	The file formats that this slicing software supports are 3MF, the file type that will be used for this project, STL, and OBJ. 
+	The file formats that this slicing software supports are 3MF, STL, OBJ, and X3D.
 	Although designed to be used in conjunction with Ultimaker printers, Cura supports many other 3D printers and is customizable so that almost any 3D printer is able to be supported if it is not already.
 	Compatible with Mac OS, Windows, and Linux, Cura is completely free and open-source. \cite{curaweb} \par
-    Cura was chosen for this project because it complies with the project requirements, specifically, it is free and open-source, and supports the 3MF file type. 
+	    Cura was chosen for this project because it complies with the project requirements, specifically, it is free and open-source, and supports the STL file type. 
     From an end product perspective, Cura is advanced enough that it is able to sufficiently communicate enough detail about the 3D object to result in a beyond satisfactory print, through its many adjustable settings and options.
     However, in terms of usability, Cura, being advertised as being suitable for all levels of 3D printer expertise, is relatively easy to learn how to use and has enough documentation and a support system that enables even the 3D printing novice to take print successfully, given that all other factors are implemented correctly.
     
@@ -203,7 +203,7 @@ Finally, when considering the impact of the computing platform on or design deci
         
         \subsubsection{Conversion Software}
         Biological structure files supplied to the workflow must be converted preceding the usage of slicing software, due to incompatible file types.
-        PDB and CIF file types are most commonly used to store biological structure data, but our selected slicing software (and most others) cannot take these as input.
+        The PDB file type is most commonly used to store biological structure data, but our selected slicing software (and most others) cannot take these as input.
         Because of this, the workflow must include a conversion feature, which will be handled by an exterior software tool.
         UCSF's Chimera was written using Python, and makes use of many well-known Python packages.
         Chimera is an open-source piece of software that is publicly available to students and faculty associated with accredited universities, after the obtainment of a usage license.
@@ -217,7 +217,7 @@ Finally, when considering the impact of the computing platform on or design deci
         Coloring of non-biological structures will take place further on in the workflow. 
         Once the user is finished interfacing with Chimera's GUI, the biological structure output will be written to the current working directory. 
         Chimera is currently able to output structure files in VRML2 (.wrl) and .STL formats.
-        Our workflow aims to utilize the 3MF file type, which is not a possible output from Chimera, but many existing libraries can be used to produce this file type from Chimera's output.
+        Our workflow aims to utilize the STL file type, which is a possible output from Chimera.
         
 	\subsection{System Operation}
 		\begin{enumerate}
