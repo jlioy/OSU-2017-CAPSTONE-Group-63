@@ -3,6 +3,7 @@
 import getopt, sys
 import os
 import subprocess
+import re
 
 inputFile = ""
 chimDir = ""
@@ -28,6 +29,12 @@ def validSTL(inputFile):
 	if not os.path.isfile(inputFile):
 		print ("File Does Not Exist!\n")	
 		sys.exit(1)
+	regexp = re.compile(r'[A-Za-z0-9.-+]')
+        f = open(inputFile, "r")
+        for line in f:
+                if not (regexp.search(line)):
+                        print("Invalid File Format!\n")
+                        sys.exit(2)
 	return 1 #file type
 
 
@@ -35,7 +42,20 @@ def validPDB(inputFile):
 	if not os.path.isfile(inputFile):
                 print ("File Does Not Exist!\n")
                 sys.exit(1)
-	return 2
+	endFlag = 0
+	regexp = re.compile(r'[A-Za-z0-9.-]')
+	f = open(inputFile, "r")
+	for line in f:
+		if "END" in line:
+			endFlag = 1
+		elif not (regexp.search(line)):
+			print("Invalid File Format!\n")
+                	sys.exit(2)
+	if endFlag:
+		return 2
+	else:
+		print("Invalid File Format!\n")
+		sys.exit(2)
 
 
 def fileValidate(inputFile):
