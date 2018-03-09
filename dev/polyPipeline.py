@@ -6,22 +6,22 @@ import subprocess
 import re
 
 inputFile = ""
-chimDir = ""
-curaDir = ""
-chroDir = "" 
+chimDir = "open -a Chimera"
+curaDir = "open -a Ultimaker\ Cura"
+chroDir = "open -a Chroma"
 
 def launchSlice(inputString):
 	cmd = '%s %s' % (curaDir,inputString)
-	subprocess.call(cmd)
+	subprocess.call(cmd,shell=True)
 	return
 
 def launchConversion(inputFile):
 	cmd = "%s %s" % (chimDir,inputFile)
-	subprocess.call(cmd)
+	subprocess.call(cmd,shell=True)
 	return
 
 def launchPrint():
-	subprocess.call(chroDir)
+	subprocess.call(chroDir,shell=True)
 	return
 	
 def validSTL(inputFile):
@@ -29,11 +29,11 @@ def validSTL(inputFile):
 		print ("File Does Not Exist!\n")	
 		sys.exit(1)
 	regexp = re.compile(r'[A-Za-z0-9.-+]')
-        f = open(inputFile, "r")
-        for line in f:
-                if not (regexp.search(line)):
-                        print("Invalid File Format!\n")
-                        sys.exit(2)
+	f = open(inputFile, "r")
+	for line in f:
+			if not (regexp.search(line)):
+					print("Invalid File Format!\n")
+					sys.exit(2)
 	return 1 #file type
 
 
@@ -49,7 +49,7 @@ def validPDB(inputFile):
 			endFlag = 1
 		elif not (regexp.search(line)):
 			print("Invalid File Format!\n")
-                	sys.exit(2)
+			sys.exit(2)
 	if endFlag:
 		return 2
 	else:
