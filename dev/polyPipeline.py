@@ -25,7 +25,6 @@ def launchPrint():
 	return
 	
 def validSTL(inputFile):
-#Invalid File Format"
 	if not os.path.isfile(inputFile):
 		print ("File Does Not Exist!\n")	
 		sys.exit(1)
@@ -127,8 +126,6 @@ def main():
 	if(verbose):
                 print ("File valid!\n")
 	if(fileType == 1):
-		#STL file input
-		#launch slicing software CURA
 		if(verbose):
 			print ("Launching CURA\n")
 		launchSlice(inputFile)
@@ -136,22 +133,15 @@ def main():
 			print ("Launching Chroma\n")
 		launchPrint()
 		sys.exit(0)
-
 	elif(fileType == 2):
-		#PDB files 
-		#launch Chimera to convert & split into multiple STLs
 		if(verbose):
 			print ("Launching Chimera\n")
 		launchConversion(inputFile)
-		#launch slicing software CURA
 		if(verbose):
-				print ("Launching CURA\n")
-
+			print ("Launching CURA\n")
 		launchSlice("")
-
 		if(verbose):
-				print ("Launching Chroma\n")
-
+			print ("Launching Chroma\n")
 		launchPrint()
 		sys.exit(0)
 	else:
