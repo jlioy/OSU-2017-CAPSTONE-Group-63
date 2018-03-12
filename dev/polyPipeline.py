@@ -6,22 +6,23 @@ import subprocess
 import re
 
 inputFile = ""
-chimDir = "open -a Chimera"
-curaDir = "open -a Ultimaker\ Cura"
-chroDir = "open -a Chroma"
+chimDir = ""
+curaDir = ""
+chroDir = ""
 
 def launchSlice(inputString):
-	cmd = '%s %s' % (curaDir,inputString)
+	cmd = 'open -W %s -a %s' % (inputString,curaDir)
 	subprocess.call(cmd,shell=True)
 	return
 
 def launchConversion(inputFile):
-	cmd = "%s %s" % (chimDir,inputFile)
+	cmd = "open -W %s -a %s" % (inputFile,chimDir)
 	subprocess.call(cmd,shell=True)
 	return
 
 def launchPrint():
-	subprocess.call(chroDir,shell=True)
+	cmd = "open -W -a %s" % chroDir
+	subprocess.call(cmd,shell=True)
 	return
 	
 def validSTL(inputFile):
@@ -137,6 +138,8 @@ def main():
 		if(verbose):
 			print ("Launching Chimera\n")
 		launchConversion(inputFile)
+		#p = subprocess.Popen(['open','../test_files/molecular_files/water.pdb', '-a','Chimera'],shell=True)
+		#p.wait()
 		if(verbose):
 			print ("Launching CURA\n")
 		launchSlice("")
