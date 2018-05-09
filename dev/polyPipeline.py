@@ -10,17 +10,32 @@ chimDir = ""
 curaDir = ""
 chroDir = ""
 
-def launchSlice(inputString):					#Method for launching OSX slicing software
+def launchSliceWindows(inputString):       	#Method for launching Windows slicing software
+        cmd = '%s %s' % (inputString,curaDir)
+        subprocess.call(cmd,shell=True)
+        return
+
+def launchConversionWindows(inputFile):       	#Method for launching Windows conversion software
+        cmd = "%s %s" % (inputFile,chimDir)
+        subprocess.call(cmd,shell=True)
+        return
+
+def launchPrintWindows():                   	#Method for launching Windows printing software
+        cmd = "%s" % chroDir         		#create cmd string with wait flag to hold execution
+        subprocess.call(cmd,shell=True)
+        return
+
+def launchSliceOSX(inputString):		#Method for launching OSX slicing software
 	cmd = 'open -W %s -a %s' % (inputString,curaDir)
 	subprocess.call(cmd,shell=True)
 	return
 
-def launchConversion(inputFile):				#Method for launching OSX conversion software
+def launchConversionOSX(inputFile):		#Method for launching OSX conversion software
 	cmd = "open -W %s -a %s" % (inputFile,chimDir)
 	subprocess.call(cmd,shell=True)
 	return
 
-def launchPrint():						#Method for launching OSX printing software
+def launchPrintOSX():				#Method for launching OSX printing software
 	cmd = "open -W -a %s" % chroDir		#create cmd string with wait flag to hold execution
 	subprocess.call(cmd,shell=True)
 	return
@@ -74,7 +89,7 @@ def fileValidate(inputFile):			#method that manages validation
 
 
 def usage():		#method for outputing usage information
-	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\tpython polyPipeline.py [Optional Flags] -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\n")
+	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\tpython polyPipeline.py [Optional Flags] [-w or -m]  -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-w\tsets operating system to Windows\n\t-m\tsets operating system to OSX\n\n")
 
 
 def readConfiguration():				#method for parsing the configuration file
@@ -97,13 +112,14 @@ def readConfiguration():				#method for parsing the configuration file
 def main():
 	readConfiguration() 		#parses and stores information from paths.conf
 	try:				#sematically identical to getopt in C
-		opts, args = getopt.getopt(sys.argv[1:], "hi:v", ["help", "input="]) #possible input flags
+		opts, args = getopt.getopt(sys.argv[1:], "hi:vwm", ["help", "input="]) #possible input flags
 	except getopt.GetoptError as err:
 		print (err)
 		usage()
 		sys.exit(2)
 	verbose = False
 	fileInput = False
+	OS = -1
 	for o, a in opts:
 		if o == "-v":
 			verbose = True			#prints execution information
@@ -113,6 +129,10 @@ def main():
 		elif o in ("-i", "--input"):
 			inputFile = a			#supplies the input file
 			fileInput = True
+		elif o == "-w":				#flag for windows users
+			OS = 1
+		elif o == "-m":				#flag for Mac users
+			OS = 2
 		else:					#unknown flags handled here
 			assert False, "unhandled option"
 	if not fileInput:				#checking that input was made
@@ -127,21 +147,51 @@ def main():
 	if(fileType == 1):			#if the input file is in STL format
 		if(verbose):
 			print ("Launching CURA\n")
-		launchSlice(inputFile)		
+		if(OS == 1):
+			launchSliceWindows(inputFile)		
+		elif(OS == 2):
+			launchSliceOSX(inputFile)
+		else:
+			print ("Failure to supply an operating system type!\n")
+			sys.exit(2)
 		if(verbose):
 			print ("Launching Chroma\n")
-		launchPrint()
+		if(OS == 1):
+                        launchPrintWindows()
+                elif(OS == 2):
+                        launchPrintOSX()
+                else:
+                        print ("Failure to supply an operating system type!\n")
+                        sys.exit(2)
 		sys.exit(0)	
 	elif(fileType == 2):			#if the input file is in PDB format
 		if(verbose):
 			print ("Launching Chimera\n")
-		launchConversion(inputFile)		
+		if(OS == 1):
+                        launchConversionWindows(inputFile)
+                elif(OS == 2):
+                        launchConversionOSX(inputFile)
+                else:
+                        print ("Failure to supply an operating system type!\n")
+                        sys.exit(2)
 		if(verbose):
 			print ("Launching CURA\n")
-		launchSlice("")
+		if(OS == 1):
+                        launchSliceWindows("")
+                elif(OS == 2):
+                        launchSliceOSX("")
+                else:
+                        print ("Failure to supply an operating system type!\n")
+                        sys.exit(2)
 		if(verbose):
 			print ("Launching Chroma\n")
-		launchPrint()
+		if(OS == 1):
+                        launchPrintWindows()
+                elif(OS == 2):
+                        launchPrintOSX()
+                else:
+                        print ("Failure to supply an operating system type!\n")
+                        sys.exit(2)
 		sys.exit(0)
 	else:					#handling cases where fileType value is unknown
 		sys.exit(0);
