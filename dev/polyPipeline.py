@@ -103,8 +103,6 @@ def main():
 		usage()
 		sys.exit(2)
 	verbose = False
-	network = False
-	direct = False
 	fileInput = False
 	for o, a in opts:
 		if o == "-v":
