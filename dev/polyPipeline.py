@@ -10,26 +10,26 @@ chimDir = ""
 curaDir = ""
 chroDir = ""
 
-def launchSlice(inputString):
+def launchSlice(inputString):					#Method for launching OSX slicing software
 	cmd = 'open -W %s -a %s' % (inputString,curaDir)
 	subprocess.call(cmd,shell=True)
 	return
 
-def launchConversion(inputFile):
+def launchConversion(inputFile):				#Method for launching OSX conversion software
 	cmd = "open -W %s -a %s" % (inputFile,chimDir)
 	subprocess.call(cmd,shell=True)
 	return
 
-def launchPrint():
-	cmd = "open -W -a %s" % chroDir
+def launchPrint():						#Method for launching OSX printing software
+	cmd = "open -W -a %s" % chroDir		#create cmd string with wait flag to hold execution
 	subprocess.call(cmd,shell=True)
 	return
 	
-def validSTL(inputFile):
-	if not os.path.isfile(inputFile):
+def validSTL(inputFile):			#method for validation of STL files
+	if not os.path.isfile(inputFile):	#checks readability
 		print ("File Does Not Exist!\n")	
 		sys.exit(1)
-	regexp = re.compile(r'[A-Za-z0-9.-+]')
+	regexp = re.compile(r'[A-Za-z0-9.-+]')	#checks formatting
 	f = open(inputFile, "r")
 	for line in f:
 			if not (regexp.search(line)):
@@ -38,66 +38,66 @@ def validSTL(inputFile):
 	return 1 #file type
 
 
-def validPDB(inputFile):
-	if not os.path.isfile(inputFile):
+def validPDB(inputFile):			#method for PDB file validation
+	if not os.path.isfile(inputFile):	#checks readability
                 print ("File Does Not Exist!\n")
                 sys.exit(1)
-	endFlag = 0
+	endFlag = 0				#flag for detection of required file syntax
 	regexp = re.compile(r'[A-Za-z0-9.-]')
 	f = open(inputFile, "r")
-	for line in f:
-		if "END" in line:
+	for line in f:				#loop over the file
+		if "END" in line:		#if END is found
 			endFlag = 1
-		elif not (regexp.search(line)):
+		elif not (regexp.search(line)):	#if invalid characters are found
 			print("Invalid File Format!\n")
 			sys.exit(2)
 	if endFlag:
 		return 2
-	else:
+	else:					#if no END was found
 		print("Invalid File Format!\n")
 		sys.exit(2)
 
 
-def fileValidate(inputFile):
+def fileValidate(inputFile):			#method that manages validation
 	tempType = 0
-	ext = inputFile[-4:]
+	ext = inputFile[-4:]		#get extension from file name
 	if(ext[0] == "."):
 		ext = ext[-3:]
 	if(ext == "pdb" or ext == "PDB"):
-		tempType = validPDB(inputFile)
+		tempType = validPDB(inputFile)	#validate the PDB file
 	elif(ext == "stl" or ext == "STL"):
-		tempType = validSTL(inputFile)
-	else:
+		tempType = validSTL(inputFile)  #validate the STL file
+	else:					#if file is not PDB or STL
 		print ("Invalid File Type!\n")
 		sys.exit(1)
 	return tempType
 
 
-def usage():
-	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\t./polyPipeline.py -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\n")
+def usage():		#method for outputing usage information
+	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\tpython polyPipeline.py [Optional Flags] -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\n")
 
 
-def readConfiguration():
-	global chimDir,chroDir,curaDir
+def readConfiguration():				#method for parsing the configuration file
+	global chimDir,chroDir,curaDir		
 	f = open("paths.conf","r") 
-	for line in f:	
+	for line in f:				#loop over config file
 		if "Chimera:" in line:	
 			chimDir = line.rstrip()
 			chimDir = chimDir[8:]
-		elif "Cura:" in line:
+		elif "Cura:" in line:			#store location information
 			curaDir = line.rstrip()
 			curaDir = curaDir[5:]	
 		elif "Chroma:" in line:	
 			chroDir = line.rstrip()
-			chroDir = chroDir[7:]
+			chroDir = chroDir[7:]		
 	f.close()
 	return
 
 
 def main():
-	readConfiguration()
-	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hi:v", ["help", "input="])
+	readConfiguration() 		#parses and stores information from paths.conf
+	try:				#sematically identical to getopt in C
+		opts, args = getopt.getopt(sys.argv[1:], "hi:v", ["help", "input="]) #possible input flags
 	except getopt.GetoptError as err:
 		print (err)
 		usage()
@@ -106,38 +106,36 @@ def main():
 	fileInput = False
 	for o, a in opts:
 		if o == "-v":
-			verbose = True
+			verbose = True			#prints execution information
 		elif o in ("-h", "--help"):
-			usage()
-			sys.exit()
+			usage()				#prints usage statement
+			sys.exit()	
 		elif o in ("-i", "--input"):
-			inputFile = a
+			inputFile = a			#supplies the input file
 			fileInput = True
-		else:
+		else:					#unknown flags handled here
 			assert False, "unhandled option"
-	if not fileInput:
-		print ("\nNo input file specified!\n\nUse -h to display usage statement\n")
+	if not fileInput:				#checking that input was made
+		print ("\nNo input file specified!\n\nUse -h to display usage statement\n")	
 		sys.exit(2)
-	else:
+	else:	#input was supplied
 		if(verbose):
 	                print ("Validating input file\n")
-		fileType = fileValidate(inputFile)
+		fileType = fileValidate(inputFile)		#validate input file
 	if(verbose):
                 print ("File valid!\n")
-	if(fileType == 1):
+	if(fileType == 1):			#if the input file is in STL format
 		if(verbose):
 			print ("Launching CURA\n")
-		launchSlice(inputFile)
+		launchSlice(inputFile)		
 		if(verbose):
 			print ("Launching Chroma\n")
 		launchPrint()
-		sys.exit(0)
-	elif(fileType == 2):
+		sys.exit(0)	
+	elif(fileType == 2):			#if the input file is in PDB format
 		if(verbose):
 			print ("Launching Chimera\n")
-		launchConversion(inputFile)
-		#p = subprocess.Popen(['open','../test_files/molecular_files/water.pdb', '-a','Chimera'],shell=True)
-		#p.wait()
+		launchConversion(inputFile)		
 		if(verbose):
 			print ("Launching CURA\n")
 		launchSlice("")
@@ -145,7 +143,7 @@ def main():
 			print ("Launching Chroma\n")
 		launchPrint()
 		sys.exit(0)
-	else:
+	else:					#handling cases where fileType value is unknown
 		sys.exit(0);
 
 if __name__ == "__main__":
