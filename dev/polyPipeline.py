@@ -44,12 +44,6 @@ def validSTL(inputFile):			#method for validation of STL files
 	if not os.path.isfile(inputFile):	#checks readability
 		print ("File Does Not Exist!\n")	
 		sys.exit(1)
-	regexp = re.compile(r'[A-Za-z0-9.-+]')	#checks formatting
-	f = open(inputFile, "r")
-	for line in f:
-			if not (regexp.search(line)):
-					print("Invalid File Format!\n")
-					sys.exit(2)
 	return 1 #file type
 
 
