@@ -1,0 +1,61 @@
+version: 2
+name: ZMorph
+preset: custom
+gpxProfile: false
+gpxConfigPath: ''
+inputs:
+  - gcode
+engine: reprap
+postprocessing: false
+volumetric: false
+independentExtruderAxes: false
+extruderStepsPerMM: 0
+filamentDiameter: 1.75
+nozzleDiameter: 0.4
+extruderCount: 1
+printExtruder: false
+printBed:
+  circular: false
+  x: 235
+  'y': 250
+  diameter: 0
+  origin: bottomleft
+  originOffsets:
+    x: 0
+    'y': 0
+bowdenTube: false
+firmwarePurge: 0
+transitions:
+  method: 1
+  purgeLength: 190
+  minPurgeLength: 155
+  initialPurgeLength: 190
+  purgeTarget: 0.4
+  transitionInInfill: true
+  transitionInSupport: false
+  towers:
+    printSpeed: 30
+    extrusionWidth: auto
+    minDensity: 0.4
+    minBottomDensity: 0.8
+    maxDensity: 0.8
+    perimeterSpeedMultiplier: 0.5
+    forceBottomPerimeter: true
+    infillPerimeterOverlap: auto
+  sideTransitions:
+    purgeSpeed: 4
+    purgeInPlace: false
+    coordinates:
+      x: 0
+      'y': 0
+    purgeEdge: west
+    purgeEdgeOffset: 2
+pings:
+  jogPauses: false
+  retraction: auto
+  pingOffTower: true
+  mechanicalPingGCode: ''
+calibration:
+  loadingOffset: 20715
+  printValue: 132118
+  calibrationGCodeLength: 5252.457190000013
