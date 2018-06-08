@@ -1,0 +1,536 @@
+\documentclass[letterpaper, onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{			The Polycules}
+\def \CapstoneTeamNumber{		63}
+\def \GroupMemberOne{			Joshua Lioy}
+\def \GroupMemberTwo{			Corynna Park}
+\def \GroupMemberThree{			Jackson Wells}
+\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
+\def \CapstoneSponsorCompany{	Oregon State University College of Science Department of Biochemistry and Biophysics}
+\def \CapstoneSponsorPerson{	Dr. Victor Hsu}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%Problem Statement
+				%Requirements Document
+				Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        	This document reviews some of the technology that can be used to implement our solution for the Molecules in 3D project. In this portion of the technology review, the various hardware devices that are being used will be covered, including printer option, multifilament interface options, and computing platforms. 
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{3D Printers}
+\subsection{Overview}
+	\begin{singlespacing}
+	While there are multiple kinds of 3d printers available to consumers and enterprise customers the kind of 3d printer that is being used for this project is known as a fused deposition modeling (SFDM) printer. An FDM printer utilizes liquid plastic, in our case polylactide (PLA), to create 3d objects that are built up by printing in layers. Amongst FDM printers there are also varying implementations of the technology that all have their advantages depending on the application. We will be looking at three different printers and their basic functions to determine the best option. 
+	\end{singlespacing} 
+\subsection{Criteria}
+  \begin{singlespacing}
+  \begin{itemize}
+      \item The printer must be an FDM type printer.
+      \item The printer must support the use of PLA for printing objects.
+      \item The printer must support input of G-code from SD cards or direct input from the computer platform or over a network interface.
+    \end{itemize}
+  \end{singlespacing}
+\subsection{Potential Choices}
+\subsubsection{ZMorph}
+	\begin{singlespacing}
+	The ZMorph printer is one printer by our client for our project. This printer allows for a few key features; primarily the use of two separate filament feeds that extruded through a single nozzle. This allows us to take more than one color or material at a time and print more complex objects than with just a single filament feed. The other benefit of the ZMorph is that it allows for the use of differing print heads. These include the default head that extrudes plastics to create objects, laser engraving heads, CNC milling heads, and more.\cite{zmorphtools}
+    \end{singlespacing}
+\subsubsection{Deltaprintr}
+	\begin{singlespacing}
+	The Deltaprintr is another printer that we have access to through our client. The main distinction between this printer and something like the ZMorph is the way that the printer creates prints. In a more traditional printer like the ZMorph printing along the $X$ and $Z$ axes are handled by the motors attached to the nozzle while printing along the $Y$ axis is handled by moving the print bed. In the Deltaprintr printing along all three axes is handled by moving the nozzle, the printing platform does not move. In the case of the Deltaprintr, we would be able to print taller, more narrow objects.\cite{deltago}
+    \end{singlespacing}
+\subsubsection{Ultimaker 3}
+	\begin{singlespacing}
+	The Ultimaker 3 is a 3d printer that is a good example of a high-end consumer 3d printer that has support for a wide variety of materials as well as support for dual extrusion with the use of two separate printing nozzles. It also has support for higher resolution prints with an $XYZ$ accuracy of $12.5$, $12.5$, and $2.5$ microns respectively. In many ways it is an industry standard for SLA printers and allows for printing in a wide variety of applications.\cite{ultimaker3}
+    \end{singlespacing}
+\subsection{Discussion}
+	\begin{singlespacing}
+	When looking at the options presented above the immediate issue with the Deltaprintr is that it does not have the capacity to create wider prints like the ZMorph and Ultimaker 3 printers. In contrast both the ZMorph and Ultimaker 3 printers are able to print suitably tall and prints that allow us to create a wider variety of objects than than we would be able to with the Detaprintr. With regards to the Ultimaker 3, we do not currently have the printer and we would need to procure it to implement our design. Comparatively, we have access to both the ZMorph and the Deltaprintr through our client. 
+	\end{singlespacing}
+\subsection{Conclusion}
+	\begin{singlespacing}
+    	We have decided that we will be making use of the ZMorph printer as it provides us with the flexibility to print objects a suitable size for out application, and we currently have access to the ZMorph printer. The ZMorph printer also interfaces well with the software that we are planning to use. Due to these reasons we are selecting the ZMorph printer to be our primary 3d printer during the course of the project.
+    \end{singlespacing}
+
+\section{Multifilament Interfaces}
+\subsection{Overview}
+	\begin{singlespacing}
+	Currently there are a limited amount of options available when it comes to multifilament interfaces in 3d printing. The reason we need a multifilament interface is so we can print polychromatic objects. With the current printers that we have access to we can print at most in two colors and even then we are only able to print in a gradient. With a multifilament interface we will be able to print objects that have distinct differences in color throughout the object. This eliminates the need for coloring the objects by hand after printing and allows for a quicker turn-around time between the design of an polychromatic object and the printing of that polychromatic.
+    \end{singlespacing}
+\subsection{Criteria}
+	\begin{singlespacing}
+    	\begin{itemize}
+    	\item The multifilament interface needs to support PLA filament.
+        \item The multifilament interface needs to support at least four different filaments.
+        \item The multifilament interface needs to support SLA printers.
+        \item The multifilament interface needs to support G-code.
+    	\end{itemize}
+    \end{singlespacing}
+\subsection{Potential Choices}
+\subsubsection{Palette+}
+	\begin{singlespacing}
+    The Palette+ enables a single extruder SLA printer to print multifilament prints. It supports up to four filaments and allows not only for a mixing of colors but a mixing of materials as well. This enables the user to print an object in three colors and print out the supports with something like a water soluble filament. The Palette+ handles all of the necessary splicing of the various filaments and it creates a single filament that is sent to the printer. Palette+ also has support with multiple slicing programs. This allows us to tailor our workflow design to use the slicing software that we choose to use in our implementation of the polychromatic 3d printing.\cite{palette+}
+    \end{singlespacing}
+\subsubsection{RoVa4D Full Color Blender 3D Printer}
+	\begin{singlespacing}
+    The RoVa4D Full Color Blender 3D printer is an FDM printer that incorporates the feeding and blending of filaments right into the printer. This removes the need for and external box to handle the splicing of filaments to create polychromatic objects. It also allows for more direct control over the filaments during the printing process. The RoVa4D has support for up to seven different filaments and has the ability to mix the filaments to create new colors.\cite{rova4d}
+    \end{singlespacing}
+\subsubsection{Prusa i3 MK2 Multi Material Upgrade}
+	\begin{singlespacing}
+    The Prusa i3 MK2 is another FDM printer that has support for multi material/polychromatic printing. The solution that is implemented in the Prusa i3 MK2 consists of an kit that is attached to the printer and allows for polychromatic printing. The upgrade kit supports up to four filaments and uses a single extruder nozzle for all the filaments. \cite{prusai3}
+    \end{singlespacing}
+\subsection{Discussion}
+	\begin{singlespacing}
+	Both the Prusa i3 MK2 Multi Material upgrade and the Palette+ have support for up to four filaments and use one extruder nozzle for printing. They are also bolt-ons for existing printers. The main difference between the Palette+ and the Prusa i3 MK2 Multi Material upgrade is that the former is designed to work with a wide variety of printers while the latter only supports the Prusa i3 MK2. The RoVa4D has the advantage of being a self contained unit and is able to support more filaments at once. However it is a rather costly device relative to the other two options. The main issue with the Prusa i3 MK2 upgrade is that it requires the purchase of the printer for the kit to work.
+	\end{singlespacing}
+\subsection{Conclusion}
+	\begin{singlespacing}
+	Based on the discussion above we have decided that for our project we will be utilizing the Palette+ as our multifilament interface. The Palette+ will allow us to utilize our choice of the ZMorph printer and will allow us the flexibility to potentially extend our workflow to support other printers.
+	\end{singlespacing}
+
+\section{Computing Platforms}
+\subsection{Overview}
+	\begin{singlespace}
+	For our project it is important to choose a computing platform that supports our requirements and allows for future expandability. We are also looking for a platform that has support for the programs that we intend to utilize in our project. 
+	\end{singlespace}
+\subsection{Criteria}
+	\begin{singlespace}
+		\begin{itemize}
+		\item The computing platform needs to support a scripting language.
+        \item The computing platform needs to support the software used to interface with the chosen 3d printer.
+        \item The computing platform needs to support the software used to interface with the multifilament interface.
+        \item The computing platform needs to support a scripting language that will interface with our chosen programs.
+		\end{itemize}
+	\end{singlespace}
+\subsection{Potential Choices}
+\subsubsection{MacOS}
+	\begin{singlespace}
+	MacOS allows us to make use of the programs that we will need to slice 3d models and handle color data before printing. MacOS also allows for the use of scripting languages through the terminal which enables us to more directly interface the various programs that we will be utilizing.
+	\end{singlespace}
+\subsubsection{Windows}
+	\begin{singlespace}
+	Windows undoubtedly has the most extensive support for the slicing and modeling programs that we are intending to use. However, it does not allow for the flexibility that we need to control certain programs with a scripting language. 
+	\end{singlespace}
+\subsubsection{Linux}
+	\begin{singlespace}
+	The main benefit of using Linux is the ability to make use of scripting languages directly from the command line. The main drawback to using Linux for our project is the lack of support for the 3d software programs that we are looking to use in our project. 
+	\end{singlespace}
+\subsection{Discussion}
+	\begin{singlespace}
+    Based on the information laid out above, it is clear that MacOS provides us with a nice balance between supporting the slicing and modeling software that we intend to use and the ability to use a scripting language to interface the various programs. Both Windows and Linux have their advantages as described above but neither provide the distinct balance that we are looking for.
+	\end{singlespace}
+\subsection{Conclusion}
+	\begin{singlespace}
+	We will be initially implementing our project using MacOS. If time permits we may decide to provide support for the Windows platform. 
+	\end{singlespace}
+
+\begin{singlespace}
+\section{3D Filament Type}
+\subsection{Overview}
+3D printing filament is the thermoplastic feedstock used in the 3D printing process.
+The type of filament used directly affects the physical properties of the 3D object that is printed. 
+Currently, there are many different filament types that can be used for 3D printing, each with different attributes and different temperature requirements.
+In this section, three filament types, PLA, ABS, and Nylon 618, will be compared to determine the type that is best suited for this project. 
+\subsection{Criteria}
+When analyzing the different filament types, the criteria that will be looked at will be: 
+\begin{itemize}
+\item Strength
+\item Flexibility
+\item Durability
+\item Difficulty to Print
+\item Print Temperature
+\item Bed Temperature
+\item Other Notable Qualities
+\end{itemize}
+\subsection{Potential Choices}
+\subsubsection{Choice One: Polylactic Acid}
+The first type of filament we will be addressing is polylactic acid, or PLA. 
+PLA is a commonly used material for 3D printing. 
+It is biodegradable and derived from renewable resources; thus, it is more environmentally friendly than most plastic materials. 
+Considering the criteria, PLA is of medium strength, has low flexibility, and medium durability. 
+PLA is relatively easy to print and requires a print temperature range between 180-220 degrees Celsius.  
+When using PLA, a heated bed is not needed. 
+With some filament types, heated beds are needed to improve print quality and prevent warping that deforms the model.\cite{heatbedweb}
+A notable quality about PLA is its biocompatibility with a human body, meaning it does not produce a toxic or immunological response when exposed to the body or bodily fluids.
+Because of this, PLA is safe to use and could be utilized for medically-related 3D printing. \cite{filamentweb}
+\subsubsection{Choice Two: Acrylonitrile Butadiene Styrene}
+When 3D printers first came around, acrylonitrile butadiene styrene, or ABS, was the most popularly used material; it is still commonly used today. 
+In terms of the criteria, ABS is of medium strength, but is weaker than PLA.
+ABS has medium flexibility and high durability.
+It requires a print temperature of about 210-250 degrees Celsius.
+Because of its higher temperature requirement, ABS is of a medium level in terms of printing difficulty. 
+Unlike PLA, ABS requires a heated bed with a temperature of about 50-100 degrees Celsius.
+Something to note is that when printing with ABS, fumes are produced which can be harmful for people or pets with breathing difficulties.
+Thus, when ABS is in use, one should be printing in a well-ventilated area and avoid inhaling the fumes. 
+Another quality to note is that when considering the cost of 3D materials, ABS is the cheapest filament type. \cite{filamentweb}
+\subsubsection{Choice Three: Nylon 618}
+The third filament type that will be considered is Nylon, specifically Nylon 618. 
+Compared to PLA and ABS, Nylon materials are much less common and harder to find, but its printing attributes are comparable.
+Nylon 618 is of high strength and durability, due to its self-bonding properties. 
+The material itself comes in a natural white color. 
+It has high flexibility and requires a print temperature of 220-260 degrees Celsius, giving it a medium print difficulty. 
+A heated bed is not required when using Nylon 618.
+A notable quality of Nylon 618 is that the material is able to be dyed any color desirable using simple fabric dye. 
+This feature can be utilized when wanting to print multicolor objects. 
+Another quality to note is that Nylon materials absorb moisture from air, thus, when not being used they should be kept in a dry environment. \cite{filamentweb}
+
+\subsection{Discussion}
+Since this project intends to be useful to a wide audience, some of which may be limited in terms of the financing and time they have available to dedicate to 3D printing, the filament type best suited for it would be one that is easily accessible, affordable, and easy to print.
+For the project's polychromatic purposes, a filament that can be represent different colors in a 3D model conveniently and quickly is desirable.
+Compared to the other filaments, Nylon 618 is less accessible, more costly, and relatively difficult to print.
+In addition, to represent different colors, Nylon 618 must be dyed; this would add a significant time requirement to an already time-intensive process.
+While ordering Nylon that has already been dyed would seem like a solution, due to its lack of accessibility and popularity, it is unlikely that this is a feasible option.
+In comparing the remaining two filament types, PLA and ABS, PLA is easier to print due to its lower temperature requirements. 
+PLA also does not require a heated bed, unlike ABS. 
+Another considerable advantage of PLA over ABS is its biocompatibility; PLA is safer to use and does not produce harmful fumes.
+\subsection{Conclusion}
+After comparing the advantages and disadvantages of ABS, PLA, and Nylon 618, the filament type that should be used to complete this project is PLA.
+
+\section{3D File Type}
+\subsection{Overview}
+Before an object can be printed in 3D, its information must first be encoded and stored in a file. 
+Depending on the file type, this information is saved as either plain text or binary data and represents physical details about an object such as is shape, coloring, texture, shadings, etc. \cite{all3dpweb}
+There are many different file types exported by CAD (Computer-Aided Drawing) software to be used in 3D printing, and these types vary in the amount of information they store.
+The following section will analyze and compare three file types, Stereolithography, Object, and 3D Manufacturing Format, to determine which will be the best to use for this project.
+ 
+\subsection{Criteria}
+When analyzing the different file types, the criteria that will be looked at will be: 
+\begin{itemize}
+\item Complexity
+\item Representation
+\item Difficulty to Export
+\item Format Type
+\end{itemize}
+\subsection{Potential Choices}
+\subsubsection{Choice One: Stereolithography}
+Stereolithography, or STL, is one of the oldest and most popularly used 3D file formats in 3D printing. 
+Files of this type are indicated with an .STL extension.
+STL is limited in that it only stores information about a 3D object's geometry.
+Considering the complexity criteria, the STL file format is one of the simplest 3D file formats available.
+In terms of representation, it only contains information about an object's geometry, ignoring other physical attributes, including color.
+Since STL files store less information, they are relatively small.
+STL files are supported by most 3D printers and easily exported by most CAD software; the export feature for STL is usually set by default. \cite{3dbeginweb}
+The STL file format type is neutral, meaning files in this format are open source and can be used by any software.
+\cite{all3dpweb}
+\subsubsection{Choice Two: Object File}
+OBJ, or object file, is another commonly used file type when it comes to 3D printing. 
+These types of files are indicated with the .OBJ extension and specify both binary and ASCII encodings of data.
+In terms of complexity, OBJ files are considered to be more complex than STL files because they can store a greater amount of information.
+Like STL files, fies in the OBJ format can store information on a 3D object's geometry. 
+In addition, they are also capable of including data about the object's appearance, such as color and texture. 
+OBJ files are easily exported by most CAD software and supported by 3D printers; however, some require a plug-in. \cite{3dbeginweb}
+The file format type for OBJ depends on its variant; its ASCII variant is neutral, but its binary variant is proprietary. 
+A file of proprietary type has readability that is restricted to only its own and other permitted software. 
+The ASCII variant is able to be read and used by any software.
+\cite{all3dpweb}
+
+\subsubsection{Choice Three: 3D Manufacturing Format}
+The third file type we will take into consideration is 3MF, the 3D Manufacturing Format.
+3MF is a new 3D printing format that is XML-based (Extensible Markup Language), human-readable, and allows design applications to export complete information on an object to a wide variety of applications, platforms, services, and printers. \cite{3mfweb}
+This file type is simple with its clear and concise specification, but also complex because it stores a significant amount of data.
+3MF files are able to fully describe a model, including object geometry, appearance, and more, while narrowing the scope of the data to avoid adding unnecessary complexity. 
+Since 3MF is a newer file format type, not every software supports it as of yet.
+However, there is an open source library as well as Microsoft implemented Windows 10 APIs which allow for the reading, writing, and validating of 3MF files. 
+3MF was developed as a neutral format type, as one of the main objectives in its development was interoperability.
+This means that 3MF files are fully open source and free to use. \cite{3mfweb}
+\subsection{Discussion}
+For this project's purposes, the file type that will be best-suited to solve the problem would be one that contains information about an object's geometry and appearance, as multicolor representation is our main goal.
+The file type must also be supported by the slicing software utilized as well as free and open source.
+Potentially, 3MF could have several advantages over OBJ and STL due to it being most recently developed.
+According to Andrew Zaleski's article, "Why These Big Companies Want a New 3D File Format," the STL and OBJ file formats are "outdated and clunky" and may have "interoperability issues when used by some of the newer 3D printers available." \cite{newformatweb}
+Since STL files do not support multicolor representation, despite being the simplest to use, STL as the file type would seem to be the least feasible option.
+In order to use STL files to create a multicolor model, a method to splice together several STL files which represent each separately colored section would have to be developed. This may go beyond the time limitations and scope of the project. 
+Moving forward, in comparing OBJ and 3MF files, they both are able to contain color information.
+However, OBJ files may be more complex than 3MF files, as OBJ files are not designed for manufacturing and may contain unnecessary information. \cite{3mfweb}
+Both may require additional steps when implementing their formats, and both have the necessary resources to do so.
+
+\subsection{Conclusion}
+After comparing the three file types, STL, OBJ, and 3MF, the one that should be utilized for this project is 3MF, as it appears to be the best for multicolor representation and interoperability. 
+
+\section{3D Slicing Software}
+\subsection{Overview}
+In order for the 3D printer to understand and print an object, the file containing the data about the object must be translated.
+This translation is done through slicing software.
+Slicing software turns the information about an object's 3D attributes into G-code, a control language for machines. 
+This code essentially creates instructions for the 3D printer to follow. \cite{whatisweb}
+To determine a slicing software that will be suitable for this project, Voxelizer, Simplify3D, and Cura will be discussed in the subsections that follow. 
+
+\subsection{Criteria}
+When analyzing the different file types, the criteria that will be looked at will be: \begin{itemize}
+\item Features
+\item File Formats Supported
+\item Compatibility with Operating Systems
+\item Compatibility with 3D Printers
+\item Cost
+
+\end{itemize}
+\subsection{Potential Choices}
+\subsubsection{Choice One: Voxelizer 2}
+Voxelizer 2 is the slicing software provided by the creators of the Zmorph 3D printer, which is the printer that will be used for this project. 
+The features of the software, as listed on its website, include on-the-spot voxel editing, dedicated multi-material workflows, each with special presets, ambient occlusion for 3D printing which improves the object quality and aesthetic, innovative image mapping including color blending, and multiple file format support. 
+It supports multimaterial and 3D printing, allowing up to 8 colors in a single print as well as filament mixing.
+The file formats that is supports are STL, JPG, DXF, and DICOM medical files. 
+Voxelizer is compatible with both Windows and Mac OS operating systems. 
+Despite being the slicing software created for the Zmorph 3D printer, Voxelizer is able to be used with several other desktop 3D printers, including Prusa i3, BCN Sigma, and any RepRap machine. 
+The software itself is free to the public and easy to download. \cite{voxelweb}
+
+\subsubsection{Choice Two: Simplify3D}
+The next slicing software that will be discussed is Simplify3D.
+According to the website for the software, Simplify3D has "model setup and plating, slicing and print file creation, pre-print simulations, customizable support structures, mesh analysis and repair, machine control and monitoring, and much more."
+Simplify3D supports STL, OBJ, and 3MF file formats and has versions to support Windows, Mac, and Linux operating systems.
+Already tested and optimized for hundreds of different 3D printers, the Simplify3D website even includes a "Check Compatibility" feature to see if a specific 3D printer is supported.
+Simplify3D does come at a cost of \$149 USD, however there are educational discounts for teachers, administrators, and students. \cite{3dsweb}
+
+\subsubsection{Choice Three: Cura}
+The Ultimaker Cure software is advertised as "the world's most advanced 3D printer software," suitable for both the novice and expert. 
+Cura's special features, as listed on the Ultimaker website, include 200 customizable settings when optimizing 3D models, the ability to print multiple objects at once, each with their own settings, and downloadable plugins to "create seamless integration with leading design and engineering software."
+The file formats supported are STL, 3MF, and OBJ.
+Although designed to be combined with Ultimaker printers, Cura supports many other 3D printers and is customizable so that almost any 3D printer can be supported if it is not already.
+Compatible with Mac OS, Windows, and Linux, Cura is completely free and open-source. \cite{curaweb}
+
+\subsection{Discussion}
+For this project, it is a requirement that all software involved must be free and open-source.
+Since Simplify3D has a cost, it is not able to be used for this project. 
+In the previous section, it was decided that 3MF will be the file format used throughout this project. 
+Voxelizer does not support the 3MF file format, thus, it appears that Cura would be the best slicing software to use for this project. 
+
+\subsection{Conclusion}
+After taking Voxelizer, Simplify3D, and Cura into consideration, Cura will be the best slicing software to use for this project.
+\end{singlespace}
+
+\section{Programming Language}
+        \subsection{Overview}
+                \begin{singlespace}
+                The selection of a programming language is a crucial decision.
+                Programming languages exist in countless number, each having their own specific task or purpose.
+                Some are designed to interact with other programs, others are designed for data processing or visualization.
+                The programming language chosen to be used will dictate how we solve the problem of producing polychromatic objects and what intermediary software tools will be put to use.
+                \end{singlespace}
+        \subsection{Criteria}
+                \begin{singlespace}
+                Due to the large variance between programming languages, we must consider our group's background knowledge and preferences so that an appropriate language is selected unanimously.
+                That being said, preference and background knowledge will not be the deciding factor for language selection.
+                A mid to high-level scripting language will be ideal for project development.
+                Scripts are intended to handle user input and send the input to other programs for processing, which is essentially the task our project aims to accomplish.
+                High-level languages enable us to execute powerful commands without having to get into the hairy details of an algorithm, which can slow development exponentially.
+                \end{singlespace}
+        \subsection{Potential Choices}
+        \subsubsection{Python}
+                        \begin{singlespace}
+                        Python is a widely known and respected high-level programming language.
+                        The documentation for this language is endless, just like the packages available for use.
+                        Created 26 years ago, Python still has a major place in the world of programming and is used in a plethora of disciplines\cite{python}.
+                        A key point of Python's popularity is its readability; file syntax forces indentation of particular sections of code, making scripts easier to read and comprehend.
+                        Availability of packages makes python a strong choice, allowing users to accomplish dense tasks in dismal amounts of code.
+                        \end{singlespace}
+                \subsubsection{Perl}
+                        \begin{singlespace}
+                        Perl is a conglomeration of programming languages, borrowing essential features from multiple sources.
+                        Like Python, Perl is a high-level scripting language, capable of pipeline management and file manipulation.
+                        Perl differs from Python in its text handling abilities, focusing more on modification than unification.
+                        This language has been around for 29 years, mainly being used in bioinformatic applications and system/network management.
+                        The documentation and number of packages available for Perl are present in much lower levels than Python, as it has not reached the same number of disciplines.
+                        \end{singlespace}
+                \subsubsection{Bash}
+                        \begin{singlespace}
+                        Bash is a free command language, basic in function and familiar to any individual that has made use of a command-line interface at some point.
+                        Running on the majority of versions of Unix, Bash is the default shell for GNU based systems and a few other operating systems \cite{bash}.
+                        This language can run files containing Bash commands, called scripts.
+                        Due to its nature, Bash is able to run any program that can be compiled or interpreted on a command-line, which is feature of almost all programs or scripts.
+                        Development of Bash is ongoing, and its current version is 4.4.
+                        \end{singlespace}
+        \subsection{Discussion}
+                \begin{singlespace}
+                The three choices investigated all provide varying perks to their usage.
+                Bash is very basic and will likely work with any piece of software that we select to execute, but scripts in this language can grow advanced quick and complications may be encountered.
+                Perl employs high power text parsing and quality system call support, while maintaining simple syntax.
+                One major drawback to Perl, in our case, is the low number of relevant modules for 3D printing applications or pipelines.
+                Python succeeds where Perl fails, with multiple existing packages intended for use in 3D printing.
+                \end{singlespace}
+        \subsection{Conclusion}
+                \begin{singlespace}
+                Python has proven itself as the best choice of programming language to use in the project.
+                This language will enable us to use multiple free and open-source tools uniquely supported by Python.
+                All of our group's members have experience in Python scripting, another reason for selection.
+                Additionally, if problems are encountered in use of Python, Bash will likely be selected for use.
+                \end{singlespace}
+
+\section{Conversion Software}
+        \subsection{Overview}
+                \begin{singlespace}
+                The software tools to be listed do not function solely as tools for file conversion, but this feature and the general function of each software choice will be investigated.
+                Essentially, the software will be used to convert biological structure data files (CIF or PDB) into printable three dimensional structure files (STL or WRL).
+                During the process of conversion, the provided structure might have to be visualized and have certain settings tweaked, particularly color or orientation.
+                \end{singlespace}
+        \subsection{Criteria}
+                \begin{singlespace}
+                The conversion software to be selected will be the tool that most adequately performs our desired functions.
+                An ideal conversion software will be open-source and free to use by the public.
+                The software must be able to take PDB and CIF files as input, and output in STL WRL or OBJ formats.
+                File output restrictions are less stringent due to the wide input support of software tools further down in the work-flow.
+                Visualization of the biological data might be necessary at this step in the work-flow, to verify the integrity of the input file, so a visualization feature will be required.
+                It is not currently known if programs further on in the project work-flow will be used to color structures originating from biological data, so support of this feature may be necessary.
+                \end{singlespace}
+        \subsection{Potential Choices}
+                \subsubsection{Pymol}
+                        \begin{singlespace}
+                        The Python Molecular Viewer (PVM or PyMol) was developed on top of existing and well-known Python packages \cite{pymol}.
+                        This means that PyMol will be fully supported by our selected programming language.
+                        PyMol is a diverse tool, supporting many advanced features that may be useful to users of our work-flow.
+                        A feature for molecule coloring scheme is included, as well as features for structure representation, and command-line support.
+                        PVM is open-source but requires a license for use.
+                        This license is free to students and educators affiliated with accredited universities, but users of the work-flow may not associated with a university.
+                        PyMol supports CIF and PDB files as input and outputs in WRL \cite{pymolFormats}.
+                        \end{singlespace}
+                \subsubsection{Jmol}
+                        \begin{singlespace}
+                        Jmol is an open-source molecule viewer, supported by Windows, OSX and Unix systems \cite{jmol}.
+                        This piece of software exists in many forms for usage in multiple ways.
+                        Specifically we are interested in Jmol's standalone application, which can be run from a command-line.
+                        Jmol is Python based, like PyMol, making it a viable choice for use with our selected programming language.
+                        This software supports CIF, PDB and many other biological data formats for input, and outputs in WRL \cite{jmolIn,jmolOut}.
+                        The program's documentation also hints at the ability to color atoms in the rendered structure, but little information is given on this subject.
+                        \end{singlespace}
+                \subsubsection{Chimera}
+                        \begin{singlespace}
+                        University of California, San Francisco produced a robust software tool for biological structure visualization called Chimera.
+                        This piece of software is designed by biochemists for biochemists, including a large array of features outside of structure manipulation and rendering \cite{Chimera}.
+                        Among its many features, Chimera includes the functionality to color structures that are input to the software \cite{chimeraColor}.
+                        Chimera can take PDB and CIF files as input, and outputs in WRL and STL \cite{chimeraOut}.
+                        Command-line execution and access to this program may not be possible.
+                        \end{singlespace}
+\subsection{Discussion}
+                \begin{singlespace}
+                Each piece of software investigated exhibited diverse functionality and could interface effectively with our required input file types.
+                Jmol and PyMol both are Python based, making them easier to use with our selected programming language.
+                All programs have support for coloration of rendered structures, although Chimera and PyMol seem to address this feature in a more involved manner.
+                Chimera is the only software of the three that supports output of STL files, but STL files will likely not be used in the project's work-flow because they fail to store color information.
+                \end{singlespace}
+        \subsection{Conclusion}
+                \begin{singlespace}
+                The Python Molecular Viewer will be used in the project work-flow.
+                The issue of licensing is not being considered, as the work-flow is intended for use by educators and their students.
+                PyMol was selected over Jmol due to the model coloration support included in PyMol.
+                While Jmol likely has support for this feature, it is not well documented and is suspected to be rudimentary.
+                \end{singlespace}
+
+\section{Hardware Communication}
+        \subsection{Overview}
+                \begin{singlespace}
+                Communication between hardware devices is an important step in the project's work-flow.
+                In this section, modes of communication between the computer running our project and the 3D printer will be investigated.
+                These choices are limited to the inputs of the printer we have selected for use in the project, the Zmorph 2.0S.
+                This printer can take in object files via USB connection, SD card or network connection.
+                No method of communication is favored by the manufacturer, all of which are listed in the product manual \cite{printer}.
+                \end{singlespace}
+        \subsection{Criteria}
+                \begin{singlespace}
+                The selected medium of communication between the computer and the printer should effectively and accurately transport file information.
+                Whichever method is chosen shall cause the user to experience no confusion in operation and usage, this assumes basic computer knowledge.
+     			Availability of the medium will also be considered, as some technologies may be obscure to some. 
+                \end{singlespace}
+        \subsection{Potential Choices}
+                \subsubsection{SD Card}
+                        \begin{singlespace}
+                        The SD card is a storage technology, used most commonly in mobile devices.
+                        The card itself is very small, around 1.5 X 0.75 inches, but can hold large amounts of memory.
+                        The printer involved in our work-flow has an SD card reader built into its interface, enabling direct file transfer \cite{SD}.
+                        Files to be printed must first be transferred to the card on the computer, this will require a computer with an SD card reader.              
+                        \end{singlespace}
+                \subsubsection{LAN}
+                        \begin{singlespace}
+                        Local area networks (LAN) are a form of network consisting of multiple computers within a limited physical area.
+                        The Zmorph 2.0S supports the use of LAN for input of structure files.
+                        This enables users of the printer to remotely setup and initiate prints from anywhere with an internet connection, assuming the printer itself is connected to the internet\cite{network}.
+                        The documentation on LAN operation is very short, and provides few key details for debugging of potential issues.
+                        Connection speeds go unmentioned by Zmorph, these become important when attempting to send large object files over a network.
+                        \end{singlespace}
+                \subsubsection{USB}
+                        \begin{singlespace}
+                        This technology is what SD card technology was built on.
+                        The Zmorph 2.0S can be interfaced with via direct USB connection to the computer in use.
+                        If selected, this choice would require a single one-time action to establish a connection, with connection only being lost if physically unplugged.
+						The price of this technology is under \$10, depending on cable length, and is readily available at most electronics stores.
+                        \end{singlespace}
+        \subsection{Discussion}
+                \begin{singlespace}
+                SD cards are very small, making them easy to lose.
+                The process of using an SD card with our printer could potentially get tiresome after many prints, and some computers may not have SD card readers built in.
+                Use of a LAN would lessen the amount of work required for usage, but poses security, connectivity and transfer speed issues. 
+                The project work-flow would have to manage and verify the connection is valid during run-time and implement troubleshooting methods when disconnections occur.
+                Direct USB connection requires minor user interaction and maintains connection with the computer a majority of the time. 
+                \end{singlespace}
+        \subsection{Conclusion}
+                \begin{singlespace}
+                The Zmorph product developers have provided their customers with three possible communication technologies.
+                Of these technologies, USB connection will be used in the project for communication between the computer and 3d printer.
+                This choice will provide our project with the best file transfer speeds and most manageable connection.
+           
+                \end{singlespace}
+    
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
