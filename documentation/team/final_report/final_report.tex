@@ -1,463 +1,440 @@
 \documentclass[letterpaper, onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
-\usepackage{graphicx}
-\usepackage[hyphens]{url}
-\usepackage{setspace}
-\usepackage{tabu}
-\usepackage{float}
-\usepackage{pdfpages}
-
-\usepackage{listings}
-\usepackage{xcolor}
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=true,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
-  showstringspaces=false,
-  showtabs=false,                  
-  tabsize=2
-}
-
-\lstset{style=mystyle}
-
-\newcommand{\cred}[1]{{\color{red}#1}}
-\newcommand{\cblue}[1]{{\color{blue}#1}}
-
-\usepackage{geometry}
-\geometry{textheight=9.5in, textwidth=7in}
-
-% 1. Fill in these details
-\def \CapstoneTeamName{			The Polycules}
-\def \CapstoneTeamNumber{		63}
-\def \GroupMemberOne{			Joshua Lioy}
-\def \GroupMemberTwo{			Corynna Park}
-\def \GroupMemberThree{			Jackson Wells}
-\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
-\def \CapstoneSponsorCompany{	Oregon State University College of Science Department of Biochemistry and Biophysics}
-\def \CapstoneSponsorPerson{	Dr. Victor Hsu}
-
-% 2. Uncomment the appropriate line below so that the document type works
-\def \DocType{	%Problem Statement
-				%Requirements Document
-				%Technology Review
-				%Design Document
-				Final Report
-				}
-			
-\newcommand{\NameSigPair}[1]{\par
-\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
-\par\vspace{-12pt} \textit{\tiny\noindent
-\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
-% 3. If the document is not to be signed, uncomment the RENEWcommand below
-\renewcommand{\NameSigPair}[1]{#1}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
-\begin{titlepage}
-    \pagenumbering{gobble}
-    \begin{singlespace}
-    	\includegraphics[height=4cm]{coe_v_spot1}
-        \hfill 
-        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
-        %\includegraphics[height=4cm]{CompanyLogo}   
-        \par\vspace{.2in}
-        \centering
-        \scshape{
-            \huge CS Capstone \DocType \par
-            {\large\today}\par
-            \vspace{.5in}
-            \textbf{\Huge\CapstoneProjectName}\par
-            \vfill
-            {\large Prepared for}\par
-            \Huge \CapstoneSponsorCompany\par
-            \vspace{5pt}
-            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
-            {\large Prepared by }\par
-            Group\CapstoneTeamNumber\par
-            % 5. comment out the line below this one if you do not wish to name your team
-            \CapstoneTeamName\par 
-            \vspace{5pt}
-            {\Large
-                \NameSigPair{\GroupMemberOne}\par
-                \NameSigPair{\GroupMemberTwo}\par
-                \NameSigPair{\GroupMemberThree}\par
-            }
-            \vspace{20pt}
-        }
-        \begin{abstract}
-            This document is the final report for the Molecules in 3D project. 
-            It consists of a project introduction, all the documentation created for the project, as well as the final poster presented at Expo and each group member's conclusions regarding how the project went.
-            The purpose of this document is to show what was done, why it was done, and how, in hopes that future audiences may be able to benefit from this project.   
-        \end{abstract}     
-    \end{singlespace}
-\end{titlepage}
-\newpage
-\pagenumbering{arabic}
-
-\newpage
-\tableofcontents
-% 7. uncomment this (if applicable). Consider adding a page break.
-\newpage
-%\listoffigures
-%\listoftables
-\clearpage
-
-% 8. now you write!https://www.overleaf.com/16812618wkzfzdwqrsmc#
-\begin{singlespace}
-
-\section{Introduction to Project}
-\subsection{Who requested it?}
-This project was requested by Dr. Victor Hsu, a professor in Oregon State University's Department of Biochemistry and Biophysics.
-\subsection{Why was it requested?}
-The project was requested to help enhance 3D printing as a teaching aid through adding a multi-color functionality. 
-Currently, OSU's DBB 3D prints single-colored molecular models to aid students in learning the structure and function of different molecules.
-To show different atom types and surfaces, they then go and hand-paint the single-colored models, which can end up being a tedious and difficult task.
-As a solution, OSU has purchased a multi-filament interface which we were then tasked with integrating it with the 3D printer and using various software to produce multi-colored models printed with up to 4 different filaments.
-\subsection{What is its importance?}
-This project's importance lies in its academic value, but it can also benefit those who wish to 3D print multi-colored objects in general. 
-Those who teach biological and/or chemical subjects will be able to better represent important molecular structures and concepts.
-Those who are tactile and visual learners will be able to learn more effectively through these larger than life, colored models.
-Finally, those who 3D print for non-academic purposes will have a new, fun feature to try out on their own and enhance their hobby.
-\subsection{Who was your client?}
-Our client was Dr. Victor Hsu.
-\subsection{Who are the members of your team?}
-Our team consisted of Joshua Lioy, Corynna Park, and Jackson Wells.
-\subsection{What were their roles?}
-Joshua managed the hardware side of the project, while Jackson took care of development on the software side. Corynna handled any leftover tasks, which mostly involved documentation, and was also the team captain. 
-\subsection{What was the role of the client?}
-The client's role was to provide us with the necessary hardware, specifically the 3D printer, multi-filament interface, computer, lab space, and filaments. 
-He also aided in defining the project's requirements and was a resource for questions when needed.
-
-\section{Requirements Document}
-\subsection{Original Requirements Document}
-\includepdf[pages=-]{capstone_requirements.pdf}
-\subsection{Changes to Requirements Document} % What new requirements were added? What existing requirements were changed? What existing requirements were deleted? Why?
-\begin{itemize}
-\item The unnecessary definitions for CIF, WRL, and OBJ were removed, as they were no longer relevant to the project.
-\item The references to 3MF and CIF were removed so that the file types for the workflow would be restricted to STL, for 3D printable files to be used with the slicing software, and PDB, for biological type files to be used with the conversion software.
-This design change was due to the change in our design, which is addressed in the Changes to Design Document section.
-\item All instances of Blender throughout the documentation were updated to Cura, as Cura was used as the project's slicing software.
-\item All instances of PyMol were removed, as Chimera was used as the project's conversion software.
-\item A section labeled "Object Requirements" was added to explicitly state the primary goal of our project which was to produce multicolored molecular objects, which we accidentally assumed to be implied in the original draft and omitted.
-\end{itemize}
-\subsection{Final Gantt Chart}
-\includepdf[pages=-]{new_gantt.pdf}
-
-\section{Design Document}
-\subsection{Original Design Document}
-\includepdf[pages=-]{capstone_design_document.pdf}
-\subsection{Changes to Design Document} %What design aspects were changed, deleted or added? Why?
-\begin{itemize}
-\item Definitions for STL and PDB were added, as these are the two file types used by our workflow.
-\item A design change that was made was not restricting users to only being able to use 3MF files with the slicing software.
-Such a restriction would force users to perform the extra step of converting a potentially already Cura-compatible file as well as add an additional application or piece of software to the workflow.
-Also, since the 3MF file type is relatively new, this could present challenges in itself, such as lack of interoperability with other software and computing platforms.
-Cura is compatible with STL, OBJ, and 3MF files; the proposal was to change the project's design to accept any of these three file types.
-Ultimately, we ended up using only .STL files in our implementation, as we found that it was relatively simple to create colored 3D data using multiple STL files, and our conversion software could easily convert biological PDB files into STL files.
-\item  The hardware communication section was removed, as it did not accurately reflect the design, but was addressed in the system operation section.
-\item In the conversion software section, all instances of PyMol were removed and replaced with Chimera, which is the conversion software that the group had decided to utilize in the workflow.
-Also PDB was determined to be the file type for biological data.
-\item The system operation section was updated and now has the workflow sending information between the slicing software and the 3D printer through SD card. 
-
-\end{itemize}
-\section{Tech Review}
-\includepdf[pages=-]{capstone_tech_review.pdf}
-
-\section{Weekly Blog Posts}
-\subsection{Joshua's Blog Posts}
-\input{joshua_blogs}
-\subsection{Corynna's Blog Posts}
-\input{corynna_blogs}
-\subsection{Jackson's Blog Posts}
-\input{jackson_blogs}
-
-\section{Final Poster}
-\includepdf[pages=-, angle=90]{team_63_expo_poster.pdf}
-
-\section{Project Documentation}
-\subsection{Project Structure} %See the section 6 of the assignment description
-The delivered python script was structured in a user-friendly fashion. Self-explanatory variable names were utilized and comments were included throughout the code, in the case that the user wishes to delve into the code and potentially make changes. The script itself makes use of an additional configuration file which simply serves to hold the installation locations of dependent software tools. Both the project's script and required configuration file are stored inside the project repository's dev/ directory. \par
-When executed, the script begins by reading the configuration file and proceeds to check the flags supplied in the executing command. The script will exit if an input file is not supplied or if a host operating system is not specified. The supplied input file is then validated, with the script exiting in error if the file fails any of the validation tests. Following validation, the dependent software packages are executed. If a PDB file is input, Chimera will be opened first and will display the supplied file. If an STL file is supplied, Cura will be launched and the supplied file will be displayed. After closing the first executed software tool, the second software tool will be opened and the user will need to manually open the files created in the previous dependent software.
-\subsection{Installation and Running of Software}
-There are four total dependencies that are required for operation of the delivered work-flow script: Python, Chimera, Cura and Chroma. The client required that all software utilized by our script must be open-source and available for download to the general public, so the project was easily portable. We met this requirement and all the of dependent software packages/tools can be downloaded from their respective host organizations.
-\subsubsection{Installation}
-The installation process will differ depending upon the operating system of those wishing to execute our pipeline script, but all software tools are presented with OSX and Windows based installation files. The actual installation process for each dependent will be the same as any other software that was previously installed on the users system. Each package comes complete with a step-by-step GUI to walk the user through the installation progress. Be sure to record the installation paths of Cura, Chimera and Chroma as this information will be required for execution of the project's script. For Windows users only, be sure to check the box specifying the addition of Python to the PATH variable during installation, or else you will have to supply Python's full installation path every time the project's script is executed. In addition to the Python script there are two profile files for Cura and Chroma that will need to be loaded if the software is being used on a different computer.
-\subsubsection{Running The Software}
-To execute the molecule printing pipeline, first obtain all the files contained in the project's GitHub repository (if you're reading this you might already have completed this step). Following acquisition of the repository's files, navigate to the dev\/ directory, open the paths\.conf file using the text editor of your choice and enter the installation location of each of the dependent software tools installed in the previous section. Mac users may not have to make any changes to these lines as the file is by default setup to work with OSX based operating systems (if your installation directory varies from the defaults be sure to include \.app at the end of the application's path). Windows users should be sure to place the path of the \.exe file of each software tool. Save these changes (if any) to the paths\.conf file and exit. You are now ready to execute the project's script. A typical run of the program will have syntax similar to the following: 
-\begin{lstlisting}[language=bash]
-python polyPipeline.py -m -i ../test_files/water.pdb
-\end{lstlisting}
-The script also comes complete with a help menu/usage statement that will be printed when the program is executed using either of the following examples: 
-\begin{lstlisting}[language=bash]
-python polyPipeline.py -h
-\end{lstlisting}
-or
-\begin{lstlisting}[language=bash]
-python polyPipeline.py --help
-\end{lstlisting}
-
-\subsection{Special Requirements}
-For our project the only special requirements we had were the use of the Palette+, the ZMorph, Chimera, Cura, Chroma, and the Python runtime environment.
-
-\section{Recommended Technical Resources} %See section 7 of the assignment description
-\subsection{Helpful Websites}
-\begin{itemize}
-\item To learn more about Ultimaker's Cura and download it from the web: \url{https://ultimaker.com/en/products/ultimaker-cura-software}
-\item For documentation on Mosaic Manufacturing's Palette+ and the Chroma software: \url{https://www.mosaicmanufacturing.com/pages/technology}
-\item Download and learn about UCSF's Chimera: \url{https://www.cgl.ucsf.edu/chimera/}
-\end{itemize}
-\section{Conclusions and Reflections}
-\subsection{Joshua}
-\input{joshua_conclusion}
-\subsection{Corynna}
-\input{corynna_conclusion}
-\subsection{Jackson}
-\input{jackson_conclusion}
-
-\subsection{Appendix 1: Essential Code Listings}
-\subsubsection{Overview}
-Here is the code for our python script as it stood at the end of our project's development. Note that this code is feature complete.
-
-\begin{lstlisting}[language=Python]
-#!/usr/bin/env python
-# coding=UTF-8
-import getopt, sys
-import os
-import subprocess
-import re
-
-inputFile = ""
-chimDir = ""
-curaDir = ""
-chroDir = ""
-
-def launchSliceWindows(inputString):       	#Method for launching Windows slicing software
-        cmd = '%s %s' % (inputString,curaDir)
-        subprocess.call(cmd,shell=True)
-        return
-
-def launchConversionWindows(inputFile):       	#Method for launching Windows conversion software
-        cmd = "%s %s" % (inputFile,chimDir)
-        subprocess.call(cmd,shell=True)
-        return
-
-def launchPrintWindows():                   	#Method for launching Windows printing software
-        cmd = "%s" % chroDir         		#create cmd string with wait flag to hold execution
-        subprocess.call(cmd,shell=True)
-        return
-
-def launchSliceOSX(inputString):		#Method for launching OSX slicing software
-	cmd = 'open -W %s -a %s' % (inputString,curaDir)
-	subprocess.call(cmd,shell=True)
-	return
-
-def launchConversionOSX(inputFile):		#Method for launching OSX conversion software
-	cmd = "open -W %s -a %s" % (inputFile,chimDir)
-	subprocess.call(cmd,shell=True)
-	return
-
-def launchPrintOSX():				#Method for launching OSX printing software
-	cmd = "open -W -a %s" % chroDir		#create cmd string with wait flag to hold execution
-	subprocess.call(cmd,shell=True)
-	return
+	\usepackage{graphicx}
+	\usepackage[hyphens]{url}
+	\usepackage{setspace}
+	\usepackage{tabu}
+	\usepackage{float}
+	\usepackage{pdfpages}
 	
-def validSTL(inputFile):			#method for validation of STL files
-	if not os.path.isfile(inputFile):	#checks readability
-		print ("File Does Not Exist!\n")	
-		sys.exit(1)
-	return 1 #file type
-
-
-def validPDB(inputFile):			#method for PDB file validation
-	if not os.path.isfile(inputFile):	#checks readability
-                print ("File Does Not Exist!\n")
-                sys.exit(1)
-	endFlag = 0				#flag for detection of required file syntax
-	regexp = re.compile(r'[A-Za-z0-9.-]')
-	f = open(inputFile, "r")
-	for line in f:				#loop over the file
-		if "END" in line:		#if END is found
-			endFlag = 1
-		elif not (regexp.search(line)):	#if invalid characters are found
+	\usepackage{listings}
+	\usepackage{xcolor}
+	\definecolor{codegreen}{rgb}{0,0.6,0}
+	\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+	\definecolor{codepurple}{rgb}{0.58,0,0.82}
+	\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+	
+	\lstdefinestyle{mystyle}{
+	  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+	  keywordstyle=\color{magenta},
+	  numberstyle=\tiny\color{codegray},
+	  stringstyle=\color{codepurple},
+	  basicstyle=\footnotesize,
+	  breakatwhitespace=false,         
+	  breaklines=true,                 
+	  captionpos=b,                    
+	  keepspaces=true,                 
+	  numbers=left,                    
+	  numbersep=5pt,                  
+	  showspaces=false,                
+	  showstringspaces=false,
+	  showtabs=false,                  
+	  tabsize=2
+	}
+	
+	\lstset{style=mystyle}
+	
+	\newcommand{\cred}[1]{{\color{red}#1}}
+	\newcommand{\cblue}[1]{{\color{blue}#1}}
+	
+	\usepackage{geometry}
+	\geometry{textheight=9.5in, textwidth=7in}
+	
+	% 1. Fill in these details
+	\def \CapstoneTeamName{			The Polycules}
+	\def \CapstoneTeamNumber{		63}
+	\def \GroupMemberOne{			Joshua Lioy}
+	\def \GroupMemberTwo{			Corynna Park}
+	\def \GroupMemberThree{			Jackson Wells}
+	\def \CapstoneProjectName{		Molecules in 3D?! And in color!? That I can hold in my hand? No way!!!}
+	\def \CapstoneSponsorCompany{	Oregon State University College of Science Department of Biochemistry and Biophysics}
+	\def \CapstoneSponsorPerson{	Dr. Victor Hsu}
+	
+	% 2. Uncomment the appropriate line below so that the document type works
+	\def \DocType{	%Problem Statement
+					%Requirements Document
+					%Technology Review
+					%Design Document
+					Final Report
+					}
+				
+	\newcommand{\NameSigPair}[1]{\par
+	\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+	\par\vspace{-12pt} \textit{\tiny\noindent
+	\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+	% 3. If the document is not to be signed, uncomment the RENEWcommand below
+	\renewcommand{\NameSigPair}[1]{#1}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{document}
+	\begin{titlepage}
+		\pagenumbering{gobble}
+		\begin{singlespace}
+			\includegraphics[height=4cm]{coe_v_spot1}
+			\hfill 
+			% 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+			%\includegraphics[height=4cm]{CompanyLogo}   
+			\par\vspace{.2in}
+			\centering
+			\scshape{
+				\huge CS Capstone \DocType \par
+				{\large\today}\par
+				\vspace{.5in}
+				\textbf{\Huge\CapstoneProjectName}\par
+				\vfill
+				{\large Prepared for}\par
+				\Huge \CapstoneSponsorCompany\par
+				\vspace{5pt}
+				{\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+				{\large Prepared by }\par
+				Group\CapstoneTeamNumber\par
+				% 5. comment out the line below this one if you do not wish to name your team
+				\CapstoneTeamName\par 
+				\vspace{5pt}
+				{\Large
+					\NameSigPair{\GroupMemberOne}\par
+					\NameSigPair{\GroupMemberTwo}\par
+					\NameSigPair{\GroupMemberThree}\par
+				}
+				\vspace{20pt}
+			}
+			\begin{abstract}
+				This document is the final report for the Molecules in 3D project. 
+				It consists of a project introduction, all the documentation created for the project, as well as the final poster presented at Expo and each group member's conclusions regarding how the project went.
+				The purpose of this document is to show what was done, why it was done, and how, in hopes that future audiences may be able to benefit from this project.   
+			\end{abstract}     
+		\end{singlespace}
+	\end{titlepage}
+	\newpage
+	\pagenumbering{arabic}
+	
+	\newpage
+	\tableofcontents
+	% 7. uncomment this (if applicable). Consider adding a page break.
+	\newpage
+	%\listoffigures
+	%\listoftables
+	\clearpage
+	
+	% 8. now you write!https://www.overleaf.com/16812618wkzfzdwqrsmc#
+	\begin{singlespace}
+	
+	\section{Introduction to Project}
+	\subsection{Who requested it?}
+	This project was requested by Dr. Victor Hsu, a professor in Oregon State University's Department of Biochemistry and Biophysics.
+	\subsection{Why was it requested?}
+	The project was requested to help enhance 3D printing as a teaching aid through adding a multi-color functionality. 
+	Currently, OSU's DBB 3D prints single-colored molecular models to aid students in learning the structure and function of different molecules.
+	To show different atom types and surfaces, they then go and hand-paint the single-colored models, which can end up being a tedious and difficult task.
+	As a solution, OSU has purchased a multi-filament interface which we were then tasked with integrating it with the 3D printer and using various software to produce multi-colored models printed with up to 4 different filaments.
+	\subsection{What is its importance?}
+	This project's importance lies in its academic value, but it can also benefit those who wish to 3D print multi-colored objects in general. 
+	Those who teach biological and/or chemical subjects will be able to better represent important molecular structures and concepts.
+	Those who are tactile and visual learners will be able to learn more effectively through these larger than life, colored models.
+	Finally, those who 3D print for non-academic purposes will have a new, fun feature to try out on their own and enhance their hobby.
+	\subsection{Who was your client?}
+	Our client was Dr. Victor Hsu.
+	\subsection{Who are the members of your team?}
+	Our team consisted of Joshua Lioy, Corynna Park, and Jackson Wells.
+	\subsection{What were their roles?}
+	Joshua managed the hardware side of the project, while Jackson took care of development on the software side. Corynna handled any leftover tasks, which mostly involved documentation, and was also the team captain. 
+	\subsection{What was the role of the client?}
+	The client's role was to provide us with the necessary hardware, specifically the 3D printer, multi-filament interface, computer, lab space, and filaments. 
+	He also aided in defining the project's requirements and was a resource for questions when needed.
+	
+	\section{Requirements Document}
+	\subsection{Original Requirements Document}
+	\includepdf[pages=-]{capstone_requirements.pdf}
+	\subsection{Changes to Requirements Document} % What new requirements were added? What existing requirements were changed? What existing requirements were deleted? Why?
+	\begin{itemize}
+	\item The unnecessary definitions for CIF, WRL, and OBJ were removed, as they were no longer relevant to the project.
+	\item The references to 3MF and CIF were removed so that the file types for the workflow would be restricted to STL, for 3D printable files to be used with the slicing software, and PDB, for biological type files to be used with the conversion software.
+	This design change was due to the change in our design, which is addressed in the Changes to Design Document section.
+	\item All instances of Blender throughout the documentation were updated to Cura, as Cura was used as the project's slicing software.
+	\item All instances of PyMol were removed, as Chimera was used as the project's conversion software.
+	\item A section labeled "Object Requirements" was added to explicitly state the primary goal of our project which was to produce multicolored molecular objects, which we accidentally assumed to be implied in the original draft and omitted.
+	\end{itemize}
+	\subsection{Final Gantt Chart}
+	\includepdf[pages=-]{new_gantt.pdf}
+	
+	\section{Design Document}
+	\subsection{Original Design Document}
+	\includepdf[pages=-]{capstone_design_document.pdf}
+	\subsection{Changes to Design Document} %What design aspects were changed, deleted or added? Why?
+	\begin{itemize}
+	\item Definitions for STL and PDB were added, as these are the two file types used by our workflow.
+	\item A design change that was made was not restricting users to only being able to use 3MF files with the slicing software.
+	Such a restriction would force users to perform the extra step of converting a potentially already Cura-compatible file as well as add an additional application or piece of software to the workflow.
+	Also, since the 3MF file type is relatively new, this could present challenges in itself, such as lack of interoperability with other software and computing platforms.
+	Cura is compatible with STL, OBJ, and 3MF files; the proposal was to change the project's design to accept any of these three file types.
+	Ultimately, we ended up using only .STL files in our implementation, as we found that it was relatively simple to create colored 3D data using multiple STL files, and our conversion software could easily convert biological PDB files into STL files.
+	\item  The hardware communication section was removed, as it did not accurately reflect the design, but was addressed in the system operation section.
+	\item In the conversion software section, all instances of PyMol were removed and replaced with Chimera, which is the conversion software that the group had decided to utilize in the workflow.
+	Also PDB was determined to be the file type for biological data.
+	\item The system operation section was updated and now has the workflow sending information between the slicing software and the 3D printer through SD card. 
+	
+	\end{itemize}
+	\section{Tech Review}
+	\includepdf[pages=-]{capstone_tech_review.pdf}
+	
+	\section{Weekly Blog Posts}
+	\subsection{Joshua's Blog Posts}
+	\input{joshua_blogs}
+	\subsection{Corynna's Blog Posts}
+	\input{corynna_blogs}
+	\subsection{Jackson's Blog Posts}
+	\input{jackson_blogs}
+	
+	\section{Final Poster}
+	\includepdf[pages=-, angle=90]{team_63_expo_poster.pdf}
+	
+	\section{Project Documentation}
+	\subsection{Project Structure} %See the section 6 of the assignment description
+	The delivered python script was structured in a user-friendly fashion. Self-explanatory variable names were utilized and comments were included throughout the code, in the case that the user wishes to delve into the code and potentially make changes. The script itself makes use of an additional configuration file which simply serves to hold the installation locations of dependent software tools. Both the project's script and required configuration file are stored inside the project repository's dev/ directory. \par
+	When executed, the script begins by reading the configuration file and proceeds to check the flags supplied in the executing command. The script will exit if an input file is not supplied or if a host operating system is not specified. The supplied input file is then validated, with the script exiting in error if the file fails any of the validation tests. Following validation, the dependent software packages are executed. If a PDB file is input, Chimera will be opened first and will display the supplied file. If an STL file is supplied, Cura will be launched and the supplied file will be displayed. After closing the first executed software tool, the second software tool will be opened and the user will need to manually open the files created in the previous dependent software.
+	\subsection{Installation and Running of Software}
+	There are four total dependencies that are required for operation of the delivered work-flow script: Python, Chimera, Cura and Chroma. The client required that all software utilized by our script must be open-source and available for download to the general public, so the project was easily portable. We met this requirement and all the of dependent software packages/tools can be downloaded from their respective host organizations.
+	\subsubsection{Installation}
+	The installation process will differ depending upon the operating system of those wishing to execute our pipeline script, but all software tools are presented with OSX and Windows based installation files. The actual installation process for each dependent will be the same as any other software that was previously installed on the users system. Each package comes complete with a step-by-step GUI to walk the user through the installation progress. Be sure to record the installation paths of Cura, Chimera and Chroma as this information will be required for execution of the project's script. For Windows users only, be sure to check the box specifying the addition of Python to the PATH variable during installation, or else you will have to supply Python's full installation path every time the project's script is executed. In addition to the Python script there are two profile files for Cura and Chroma that will need to be loaded if the software is being used on a different computer.
+	\subsubsection{Running The Software}
+	To execute the molecule printing pipeline, first obtain all the files contained in the project's GitHub repository (if you're reading this you might already have completed this step). Following acquisition of the repository's files, navigate to the dev\/ directory, open the paths\.conf file using the text editor of your choice and enter the installation location of each of the dependent software tools installed in the previous section. Mac users may not have to make any changes to these lines as the file is by default setup to work with OSX based operating systems (if your installation directory varies from the defaults be sure to include \.app at the end of the application's path). Windows users should be sure to place the path of the \.exe file of each software tool. Save these changes (if any) to the paths\.conf file and exit. You are now ready to execute the project's script. A typical run of the program will have syntax similar to the following: 
+	\begin{lstlisting}[language=bash]
+	python polyPipeline.py -m -i ../test_files/water.pdb
+	\end{lstlisting}
+	The script also comes complete with a help menu/usage statement that will be printed when the program is executed using either of the following examples: 
+	\begin{lstlisting}[language=bash]
+	python polyPipeline.py -h
+	\end{lstlisting}
+	or
+	\begin{lstlisting}[language=bash]
+	python polyPipeline.py --help
+	\end{lstlisting}
+	
+	\subsection{Special Requirements}
+	For our project the only special requirements we had were the use of the Palette+, the ZMorph, Chimera, Cura, Chroma, and the Python runtime environment.
+	
+	\section{Recommended Technical Resources} %See section 7 of the assignment description
+	\subsection{Helpful Websites}
+	\begin{itemize}
+	\item To learn more about Ultimaker's Cura and download it from the web: \url{https://ultimaker.com/en/products/ultimaker-cura-software}
+	\item For documentation on Mosaic Manufacturing's Palette+ and the Chroma software: \url{https://www.mosaicmanufacturing.com/pages/technology}
+	\item Download and learn about UCSF's Chimera: \url{https://www.cgl.ucsf.edu/chimera/}
+	\end{itemize}
+	\section{Conclusions and Reflections}
+	\subsection{Joshua}
+	\input{joshua_conclusion}
+	\subsection{Corynna}
+	\input{corynna_conclusion}
+	\subsection{Jackson}
+	\input{jackson_conclusion}
+	
+	\subsection{Appendix 1: Essential Code Listings}
+	\subsubsection{Overview}
+	Here is the code for our python script as it stood at the end of our project's development. Note that this code is feature complete.
+	
+	\begin{lstlisting}[language=Python]
+	#!/usr/bin/env python
+	# coding=UTF-8
+	import getopt, sys
+	import os
+	import subprocess
+	import re
+	
+	inputFile = ""
+	chimDir = ""
+	curaDir = ""
+	chroDir = ""
+	
+	def launchSliceWindows(inputString):       	#Method for launching Windows slicing software
+			cmd = '%s %s' % (inputString,curaDir)
+			subprocess.call(cmd,shell=True)
+			return
+	
+	def launchConversionWindows(inputFile):       	#Method for launching Windows conversion software
+			cmd = "%s %s" % (inputFile,chimDir)
+			subprocess.call(cmd,shell=True)
+			return
+	
+	def launchPrintWindows():                   	#Method for launching Windows printing software
+			cmd = "%s" % chroDir         		#create cmd string with wait flag to hold execution
+			subprocess.call(cmd,shell=True)
+			return
+	
+	def launchSliceOSX(inputString):		#Method for launching OSX slicing software
+		cmd = 'open -W %s -a %s' % (inputString,curaDir)
+		subprocess.call(cmd,shell=True)
+		return
+	
+	def launchConversionOSX(inputFile):		#Method for launching OSX conversion software
+		cmd = "open -W %s -a %s" % (inputFile,chimDir)
+		subprocess.call(cmd,shell=True)
+		return
+	
+	def launchPrintOSX():				#Method for launching OSX printing software
+		cmd = "open -W -a %s" % chroDir		#create cmd string with wait flag to hold execution
+		subprocess.call(cmd,shell=True)
+		return
+		
+	def validSTL(inputFile):			#method for validation of STL files
+		if not os.path.isfile(inputFile):	#checks readability
+			print ("File Does Not Exist!\n")	
+			sys.exit(1)
+		return 1 #file type
+	
+	
+	def validPDB(inputFile):			#method for PDB file validation
+		if not os.path.isfile(inputFile):	#checks readability
+					print ("File Does Not Exist!\n")
+					sys.exit(1)
+		endFlag = 0				#flag for detection of required file syntax
+		regexp = re.compile(r'[A-Za-z0-9.-]')
+		f = open(inputFile, "r")
+		for line in f:				#loop over the file
+			if "END" in line:		#if END is found
+				endFlag = 1
+			elif not (regexp.search(line)):	#if invalid characters are found
+				print("Invalid File Format!\n")
+				sys.exit(2)
+		if endFlag:
+			return 2
+		else:					#if no END was found
 			print("Invalid File Format!\n")
 			sys.exit(2)
-	if endFlag:
-		return 2
-	else:					#if no END was found
-		print("Invalid File Format!\n")
-		sys.exit(2)
-
-
-def fileValidate(inputFile):			#method that manages validation
-	tempType = 0
-	ext = inputFile[-4:]		#get extension from file name
-	if(ext[0] == "."):
-		ext = ext[-3:]
-	if(ext == "pdb" or ext == "PDB"):
-		tempType = validPDB(inputFile)	#validate the PDB file
-	elif(ext == "stl" or ext == "STL"):
-		tempType = validSTL(inputFile)  #validate the STL file
-	else:					#if file is not PDB or STL
-		print ("Invalid File Type!\n")
-		sys.exit(1)
-	return tempType
-
-
-def usage():		#method for outputing usage information
-	print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\tpython polyPipeline.py [Optional Flags] [-w or -m]  -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-w\tsets operating system to Windows\n\t-m\tsets operating system to OSX\n\n")
-
-
-def readConfiguration():				#method for parsing the configuration file
-	global chimDir,chroDir,curaDir		
-	f = open("paths.conf","r") 
-	for line in f:				#loop over config file
-		if "Chimera:" in line:	
-			chimDir = line.rstrip()
-			chimDir = chimDir[8:]
-		elif "Cura:" in line:			#store location information
-			curaDir = line.rstrip()
-			curaDir = curaDir[5:]	
-		elif "Chroma:" in line:	
-			chroDir = line.rstrip()
-			chroDir = chroDir[7:]		
-	f.close()
-	return
-
-
-def main():
-	readConfiguration() 		#parses and stores information from paths.conf
-	try:				#sematically identical to getopt in C
-		opts, args = getopt.getopt(sys.argv[1:], "hi:vwm", ["help", "input="]) #possible input flags
-	except getopt.GetoptError as err:
-		print (err)
-		usage()
-		sys.exit(2)
-	verbose = False
-	fileInput = False
-	OS = -1
-	for o, a in opts:
-		if o == "-v":
-			verbose = True			#prints execution information
-		elif o in ("-h", "--help"):
-			usage()				#prints usage statement
-			sys.exit()	
-		elif o in ("-i", "--input"):
-			inputFile = a			#supplies the input file
-			fileInput = True
-		elif o == "-w":				#flag for windows users
-			OS = 1
-		elif o == "-m":				#flag for Mac users
-			OS = 2
-		else:					#unknown flags handled here
-			assert False, "unhandled option"
-	if not fileInput:				#checking that input was made
-		print ("\nNo input file specified!\n\nUse -h to display usage statement\n")	
-		sys.exit(2)
-	else:	#input was supplied
-		if(verbose):
-	                print ("Validating input file\n")
-		fileType = fileValidate(inputFile)		#validate input file
-	if(verbose):
-                print ("File valid!\n")
-	if(fileType == 1):			#if the input file is in STL format
-		if(verbose):
-			print ("Launching CURA\n")
-		if(OS == 1):
-			launchSliceWindows(inputFile)		
-		elif(OS == 2):
-			launchSliceOSX(inputFile)
-		else:
-			print ("Failure to supply an operating system type!\n")
+	
+	
+	def fileValidate(inputFile):			#method that manages validation
+		tempType = 0
+		ext = inputFile[-4:]		#get extension from file name
+		if(ext[0] == "."):
+			ext = ext[-3:]
+		if(ext == "pdb" or ext == "PDB"):
+			tempType = validPDB(inputFile)	#validate the PDB file
+		elif(ext == "stl" or ext == "STL"):
+			tempType = validSTL(inputFile)  #validate the STL file
+		else:					#if file is not PDB or STL
+			print ("Invalid File Type!\n")
+			sys.exit(1)
+		return tempType
+	
+	
+	def usage():		#method for outputing usage information
+		print ("\nPolyChromatic 3D Printing Pipeline\n\nDeveloped by:\n\tJoshua Lioy, Corynna Park, Jackson Wells\n\nUsage:\n\tpython polyPipeline.py [Optional Flags] [-w or -m]  -i [input file]\n\nFlags:\n\t-h\tdisplayes usage\n\t-i\tto input file\n\t-v\tfor verbose program output\n\t-w\tsets operating system to Windows\n\t-m\tsets operating system to OSX\n\n")
+	
+	
+	def readConfiguration():				#method for parsing the configuration file
+		global chimDir,chroDir,curaDir		
+		f = open("paths.conf","r") 
+		for line in f:				#loop over config file
+			if "Chimera:" in line:	
+				chimDir = line.rstrip()
+				chimDir = chimDir[8:]
+			elif "Cura:" in line:			#store location information
+				curaDir = line.rstrip()
+				curaDir = curaDir[5:]	
+			elif "Chroma:" in line:	
+				chroDir = line.rstrip()
+				chroDir = chroDir[7:]		
+		f.close()
+		return
+	
+	
+	def main():
+		readConfiguration() 		#parses and stores information from paths.conf
+		try:				#sematically identical to getopt in C
+			opts, args = getopt.getopt(sys.argv[1:], "hi:vwm", ["help", "input="]) #possible input flags
+		except getopt.GetoptError as err:
+			print (err)
+			usage()
 			sys.exit(2)
+		verbose = False
+		fileInput = False
+		OS = -1
+		for o, a in opts:
+			if o == "-v":
+				verbose = True			#prints execution information
+			elif o in ("-h", "--help"):
+				usage()				#prints usage statement
+				sys.exit()	
+			elif o in ("-i", "--input"):
+				inputFile = a			#supplies the input file
+				fileInput = True
+			elif o == "-w":				#flag for windows users
+				OS = 1
+			elif o == "-m":				#flag for Mac users
+				OS = 2
+			else:					#unknown flags handled here
+				assert False, "unhandled option"
+		if not fileInput:				#checking that input was made
+			print ("\nNo input file specified!\n\nUse -h to display usage statement\n")	
+			sys.exit(2)
+		else:	#input was supplied
+			if(verbose):
+						print ("Validating input file\n")
+			fileType = fileValidate(inputFile)		#validate input file
 		if(verbose):
-			print ("Launching Chroma\n")
-		if(OS == 1):
-                        launchPrintWindows()
-                elif(OS == 2):
-                        launchPrintOSX()
-                else:
-                        print ("Failure to supply an operating system type!\n")
-                        sys.exit(2)
-		sys.exit(0)	
-	elif(fileType == 2):			#if the input file is in PDB format
-		if(verbose):
-			print ("Launching Chimera\n")
-		if(OS == 1):
-                        launchConversionWindows(inputFile)
-                elif(OS == 2):
-                        launchConversionOSX(inputFile)
-                else:
-                        print ("Failure to supply an operating system type!\n")
-                        sys.exit(2)
-		if(verbose):
-			print ("Launching CURA\n")
-		if(OS == 1):
-                        launchSliceWindows("")
-                elif(OS == 2):
-                        launchSliceOSX("")
-                else:
-                        print ("Failure to supply an operating system type!\n")
-                        sys.exit(2)
-		if(verbose):
-			print ("Launching Chroma\n")
-		if(OS == 1):
-                        launchPrintWindows()
-                elif(OS == 2):
-                        launchPrintOSX()
-                else:
-                        print ("Failure to supply an operating system type!\n")
-                        sys.exit(2)
-		sys.exit(0)
-	else:					#handling cases where fileType value is unknown
-		sys.exit(0);
-
-if __name__ == "__main__":
-    main()
-\end{lstlisting}
-
-\subsection{Appendix 2: Figures}
-\subsubsection{Overview}
-Following are some images that represent some of the progress that was made over the course of the Molecules in 3D project. 
-They show the lab setup as well as some of the hardware equipment that we used for the project. 
-We also have some images of what the a print of a water molecule looks like at the starting stage and part-way through the print.
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.17]{palette}
-\caption{This is the Palette+ that takes in up to four different filaments and splices them together to make one single filament.}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.2]{partial_setup1}
-\caption{This is part of the setup in our lab where Palette+ connects to the printer using a Teflon tube that guides the resulting spliced filament into the printer's feed mechanism.}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.2]{full_setup}
-\caption{This is the full setup, and shows the rack that holds the filament along with the Palette+ and the printer.}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.15]{start_print}
-\caption{This is the start of a water molecule being printed. You can see the transition tower to the left and the molecule object to the right.}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.15]{partial_print}
-\caption{This is roughly half way through a six hour print. Again the transition tower is on the right and the molecule object is on the left.}
-\end{figure}
-
-\end{singlespace}
-\end{document}
+					print ("File valid!\n")
+		if(fileType == 1):			#if the input file is in STL format
+			if(verbose):
+				print ("Launching CURA\n")
+			if(OS == 1):
+				launchSliceWindows(inputFile)		
+			elif(OS == 2):
+				launchSliceOSX(inputFile)
+			else:
+				print ("Failure to supply an operating system type!\n")
+				sys.exit(2)
+			if(verbose):
+				print ("Launching Chroma\n")
+			if(OS == 1):
+							launchPrintWindows()
+					elif(OS == 2):
+							launchPrintOSX()
+					else:
+							print ("Failure to supply an operating system type!\n")
+							sys.exit(2)
+			sys.exit(0)	
+		elif(fileType == 2):			#if the input file is in PDB format
+			if(verbose):
+				print ("Launching Chimera\n")
+			if(OS == 1):
+							launchConversionWindows(inputFile)
+					elif(OS == 2):
+							launchConversionOSX(inputFile)
+					else:
+							print ("Failure to supply an operating system type!\n")
+							sys.exit(2)
+			if(verbose):
+				print ("Launching CURA\n")
+			if(OS == 1):
+							launchSliceWindows("")
+					elif(OS == 2):
+							launchSliceOSX("")
+					else:
+							print ("Failure to supply an operating system type!\n")
+							sys.exit(2)
+			if(verbose):
+				print ("Launching Chroma\n")
+			if(OS == 1):
+							launchPrintWindows()
+					elif(OS == 2):
+							launchPrintOSX()
+					else:
+							print ("Failure to supply an operating system type!\n")
+							sys.exit(2)
+			sys.exit(0)
+		else:					#handling cases where fileType value is unknown
+			sys.exit(0);
+	
+	if __name__ == "__main__":
+		main()
+	\end{lstlisting}
+	
+	\subsection{Appendix 2: Images}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{full_setup}
+	\caption{This is the full setup, and shows the rack that holds the filament along with the Palette+ and the printer.}
+	\end{figure}
+	
+	\end{singlespace}
+	\end{document}
+	
